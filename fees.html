@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fees & Banking - Windsor Secondary School</title>
+  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <style>
+    .info-wrap { max-width: 900px; margin: 0 auto; }
+    .info-block { margin-bottom: 2.5rem; }
+    .info-block h2 { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:var(--M); margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:2px solid var(--G); display:inline-block; }
+    .info-block p { color:var(--T); line-height:1.8; font-size:0.95rem; margin-bottom:0.75rem; }
+    .bank-card { background:var(--W); border:1px solid var(--Cd); border-left:5px solid var(--M); padding:2rem; box-shadow:0 2px 16px rgba(92,10,26,0.08); }
+    .bank-row { display:grid; grid-template-columns:180px 1fr; gap:0.5rem 1rem; padding:0.6rem 0; border-bottom:1px solid var(--Cd); }
+    .bank-row:last-child { border-bottom:none; }
+    .bank-label { font-size:0.72rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--Gd); }
+    .bank-value { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:var(--M); }
+    .alert-box { background:linear-gradient(135deg,#3d0610,#5c0a1a); border:1px solid rgba(201,168,76,0.3); padding:1.25rem 1.5rem; margin-top:1.5rem; border-radius:4px; text-align:center; }
+    .alert-box p { color:rgba(255,255,255,0.9); font-weight:700; font-size:0.95rem; margin:0; }
+    .info-list { list-style:none; padding:0; }
+    .info-list li { padding:0.6rem 0; border-bottom:1px solid var(--Cd); color:var(--T); font-size:0.92rem; display:flex; gap:0.75rem; }
+    .info-list li::before { content:'◆'; color:var(--G); font-size:0.55rem; margin-top:0.45rem; flex-shrink:0; }
+    .times-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .time-card { background:var(--W); border:1px solid var(--Cd); border-top:3px solid var(--M); padding:1.25rem; text-align:center; }
+    .time-card .day { font-size:0.7rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--Gd); margin-bottom:0.4rem; }
+    .time-card .hours { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; color:var(--M); }
+    @media(max-width:600px){ .bank-row{grid-template-columns:1fr;} .times-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="nav-brand"><span>Windsor Secondary School</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="uniform.html">Uniform</a></li>
+      <li><a href="admissions.html">Admissions</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page-banner">
+    <img src="../images/logo.png" alt="" class="page-banner-watermark" aria-hidden="true" />
+    <h1>Fees &amp; <em>Banking</em></h1>
+    <p>School fees, banking details and general information</p>
+  </div>
+
+  <section style="background:var(--C);">
+    <div class="info-wrap">
+
+      <div class="info-block">
+        <h2>School Fees</h2>
+        <p>The compulsory school fees for 2025 were <strong>R2 500 per learner per annum</strong> and may increase in 2026 to <strong>R2 800.00</strong>.</p>
+        <p>Payment must be done via <strong>bank deposit or EFT</strong> — no cash will be accepted at school. Proof of payment must be submitted to the school. Please ensure that the correct reference details are used when making payment.</p>
+      </div>
+
+      <div class="info-block">
+        <h2>Banking Details</h2>
+        <div class="bank-card">
+          <div class="bank-row"><span class="bank-label">Bank</span><span class="bank-value">NEDBANK</span></div>
+          <div class="bank-row"><span class="bank-label">Branch</span><span class="bank-value">Ladysmith</span></div>
+          <div class="bank-row"><span class="bank-label">Branch Code</span><span class="bank-value">133025</span></div>
+          <div class="bank-row"><span class="bank-label">Account Number</span><span class="bank-value">1330079000</span></div>
+          <div class="bank-row"><span class="bank-label">Account Holder</span><span class="bank-value">WINDSOR SECONDARY SCHOOL</span></div>
+          <div class="bank-row"><span class="bank-label">Reference</span><span class="bank-value" style="font-size:0.95rem;">LEARNER'S NAME, SURNAME, GRADE AND YEAR<br/><small style="font-family:'Outfit',sans-serif;font-size:0.75rem;color:var(--T);">Example: LUNGA LANGA GRADE 8 2026</small></span></div>
+        </div>
+        <div class="alert-box">
+          <p>DEPOSIT SLIP TO BE BROUGHT TO SCHOOL AS PROOF OF PAYMENT</p>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h2>School Times</h2>
+        <div class="times-grid">
+          <div class="time-card">
+            <div class="day">Monday – Thursday</div>
+            <div class="hours">07:30 – 14:30</div>
+          </div>
+          <div class="time-card">
+            <div class="day">Friday</div>
+            <div class="hours">07:30 – 12:30</div>
+          </div>
+        </div>
+        <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--T);">Please ensure that your child/ward is on time for school.</p>
+      </div>
+
+      <div class="info-block">
+        <h2>Ream of Paper</h2>
+        <p>Learners are required to provide <strong>2 (two) reams of paper</strong> to the school:</p>
+        <ul class="info-list">
+          <li>Starting of the school year (Term 1)</li>
+          <li>Starting of the 3rd term</li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h2>Uniform Supplier</h2>
+        <p>A blazer is compulsory as part of the school uniform. The official supplier is:</p>
+        <div style="background:var(--W);border:1px solid var(--Cd);border-left:4px solid var(--G);padding:1.25rem 1.5rem;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--M);">FILCON SCHOOLWEAR</div>
+          <div style="font-size:0.82rem;color:var(--T);margin-top:0.25rem;">Official supplier of Windsor Secondary School uniform</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Windsor Secondary School</h4>
+        <p>Committed to academic excellence, character development, and producing well-rounded citizens.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61581281594797" target="_blank" rel="noopener" class="social-link"><span class="s-icon">📘</span> Facebook</a>
+          <a href="https://www.tiktok.com/@windsorsecondaryschool" target="_blank" rel="noopener" class="social-link"><span class="s-icon">🎵</span> TikTok</a>
+          <a href="https://wa.me/27825052456" target="_blank" rel="noopener" class="social-link"><span class="s-icon">💬</span> WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="fees.html">Fees &amp; Banking</a></li>
+          <li><a href="stationery.html">Stationery</a></li>
+          <li><a href="uniform.html">Uniform</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>📍 28 Forbes Street, Ladysmith, 3370</li>
+          <li>📞 +27 36 637 2011</li>
+          <li>💬 +27 82 505 2456</li>
+          <li>✉️ windsorsecondary1@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Windsor Secondary School &bull; <em>Discipulus Tuus Sum</em></p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery - Windsor Secondary School</title>
+  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <style>
+    /* FILTER TABS */
+    .filter-bar {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      justify-content: center; margin-bottom: 2rem;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.25rem; border-radius: 3px;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; border: 1.5px solid var(--Cd);
+      background: var(--W); color: var(--T);
+      transition: all 0.2s; font-family: 'Outfit', sans-serif;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--M); color: var(--G);
+      border-color: var(--M);
+    }
+
+    /* GRID */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.75rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* PHOTO ITEM */
+    .media-item {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3; cursor: pointer;
+      background: var(--Md);
+    }
+    .media-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s;
+      display: block;
+    }
+    .media-item:hover img { transform: scale(1.06); }
+
+    .media-overlay {
+      position: absolute; inset: 0;
+      background: rgba(61,6,16,0.6);
+      display: flex; align-items: flex-end;
+      opacity: 0; transition: opacity 0.3s;
+      padding: 0.75rem;
+    }
+    .media-item:hover .media-overlay { opacity: 1; }
+    .media-overlay span {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--G); background: rgba(0,0,0,0.5);
+      padding: 0.25rem 0.6rem; border-radius: 2px;
+    }
+
+    /* VIDEO ITEM */
+    .video-item {
+      position: relative; overflow: hidden;
+      aspect-ratio: 16/9; background: var(--Md);
+    }
+    .video-item video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .video-badge {
+      position: absolute; top: 0.5rem; left: 0.5rem;
+      background: var(--M); color: var(--G);
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 0.2rem 0.5rem; border-radius: 2px;
+    }
+
+    /* SECTION HEADER */
+    .gallery-section-head {
+      background: linear-gradient(135deg, var(--Md), var(--M));
+      color: var(--G);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 700;
+      padding: 0.65rem 1.25rem;
+      letter-spacing: 1px;
+      border-left: 4px solid var(--G);
+      margin: 2.5rem 0 1rem;
+      max-width: 1200px;
+    }
+
+    /* LIGHTBOX */
+    .lb { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; flex-direction:column; }
+    .lb.open { display:flex; }
+    .lb img { max-width:92vw; max-height:85vh; object-fit:contain; border:1px solid rgba(201,168,76,0.3); }
+    .lb-close { position:absolute; top:1rem; right:1.5rem; color:var(--G); font-size:2.5rem; cursor:pointer; line-height:1; }
+    .lb-nav { display:flex; gap:2rem; margin-top:1rem; }
+    .lb-nav button { background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); color:var(--G); font-size:1.5rem; padding:0.3rem 1.2rem; cursor:pointer; }
+    .lb-nav button:hover { background:rgba(201,168,76,0.3); }
+    .lb-counter { color:rgba(255,255,255,0.5); font-size:0.8rem; margin-top:0.5rem; }
+
+    @media(max-width:600px) {
+      .media-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-brand">
+      <img src="../images/logo.png" alt="Logo" class="nav-logo" />
+      <span>Windsor Secondary School</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="admissions.html">Admissions</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page-banner">
+    <img src="../images/logo.png" alt="" class="page-banner-watermark" aria-hidden="true" />
+    <h1>Photo &amp; Video <em>Gallery</em></h1>
+    <p>Awards ceremony, football, netball and rugby — Windsor in action</p>
+  </div>
+
+  <section style="background:var(--C); padding:3rem 2rem;">
+
+    <!-- FILTER TABS -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="awards">🏆 Awards</button>
+      <button class="filter-btn" data-filter="rugby">🏉 Rugby</button>
+      <button class="filter-btn" data-filter="football">⚽ Football</button>
+      <button class="filter-btn" data-filter="netball">🏐 Netball</button>
+      <button class="filter-btn" data-filter="video">🎬 Videos</button>
+    </div>
+
+    <!-- AWARDS PHOTOS -->
+    <div class="gallery-section-head" data-section="awards">🏆 Awards Ceremony</div>
+    <div class="media-grid" id="grid-awards-photos">
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615329308_1519618553498312_5063973421937673533_n.jpg"><img src="../AWARDS/615329308_1519618553498312_5063973421937673533_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615341794_1519632296830271_4742781672900969777_n.jpg"><img src="../AWARDS/615341794_1519632296830271_4742781672900969777_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615350228_1519619360164898_8276256329630579133_n.jpg"><img src="../AWARDS/615350228_1519619360164898_8276256329630579133_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615416334_1519618686831632_8667761948937419571_n.jpg"><img src="../AWARDS/615416334_1519618686831632_8667761948937419571_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615418846_1519618426831658_8566031421633701287_n.jpg"><img src="../AWARDS/615418846_1519618426831658_8566031421633701287_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615430904_1519617630165071_4817572914141652114_n.jpg"><img src="../AWARDS/615430904_1519617630165071_4817572914141652114_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615438383_1519632210163613_4606589225567549750_n.jpg"><img src="../AWARDS/615438383_1519632210163613_4606589225567549750_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615440719_1519621190164715_924004042586625932_n.jpg"><img src="../AWARDS/615440719_1519621190164715_924004042586625932_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615442882_1519619730164861_5050322341028935087_n.jpg"><img src="../AWARDS/615442882_1519619730164861_5050322341028935087_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615447221_1519621113498056_6795184934229989830_n.jpg"><img src="../AWARDS/615447221_1519621113498056_6795184934229989830_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615448151_1519618350164999_7737981265123543471_n.jpg"><img src="../AWARDS/615448151_1519618350164999_7737981265123543471_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615540019_1519620193498148_8619724148540154128_n.jpg"><img src="../AWARDS/615540019_1519620193498148_8619724148540154128_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615576753_1519620513498116_4447567401695437695_n.jpg"><img src="../AWARDS/615576753_1519620513498116_4447567401695437695_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615604662_1519622146831286_8827132624238240385_n.jpg"><img src="../AWARDS/615604662_1519622146831286_8827132624238240385_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615687856_1519620423498125_1976252882584104005_n.jpg"><img src="../AWARDS/615687856_1519620423498125_1976252882584104005_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/615753139_1519621700164664_4481384269149701020_n.jpg"><img src="../AWARDS/615753139_1519621700164664_4481384269149701020_n.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0009.jpg"><img src="../AWARDS/IMG-20260422-WA0009.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0012.jpg"><img src="../AWARDS/IMG-20260422-WA0012.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0013.jpg"><img src="../AWARDS/IMG-20260422-WA0013.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0014.jpg"><img src="../AWARDS/IMG-20260422-WA0014.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0026.jpg"><img src="../AWARDS/IMG-20260422-WA0026.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0027.jpg"><img src="../AWARDS/IMG-20260422-WA0027.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0028.jpg"><img src="../AWARDS/IMG-20260422-WA0028.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0029.jpg"><img src="../AWARDS/IMG-20260422-WA0029.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0030.jpg"><img src="../AWARDS/IMG-20260422-WA0030.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0031.jpg"><img src="../AWARDS/IMG-20260422-WA0031.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0032.jpg"><img src="../AWARDS/IMG-20260422-WA0032.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+      <div class="media-item" data-cat="awards" data-src="../AWARDS/IMG-20260422-WA0033.jpg"><img src="../AWARDS/IMG-20260422-WA0033.jpg" alt="Awards" loading="lazy" /><div class="media-overlay"><span>Awards</span></div></div>
+    </div>
+
+    <!-- RUGBY PHOTOS -->
+    <div class="gallery-section-head" data-section="rugby">🏉 Rugby</div>
+    <div class="media-grid">
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260413_125142.jpg"><img src="../rugby/IMG_20260413_125142.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260423_103159.jpg"><img src="../rugby/IMG_20260423_103159.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260423_103216.jpg"><img src="../rugby/IMG_20260423_103216.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260423_103234.jpg"><img src="../rugby/IMG_20260423_103234.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260423_103245.jpg"><img src="../rugby/IMG_20260423_103245.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260423_103255.jpg"><img src="../rugby/IMG_20260423_103255.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260423_103306.jpg"><img src="../rugby/IMG_20260423_103306.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260423_103347.jpg"><img src="../rugby/IMG_20260423_103347.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260423_103402.jpg"><img src="../rugby/IMG_20260423_103402.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG_20260423_103406.jpg"><img src="../rugby/IMG_20260423_103406.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260416-WA0013.jpg"><img src="../rugby/IMG-20260416-WA0013.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260416-WA0014.jpg"><img src="../rugby/IMG-20260416-WA0014.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260416-WA0015.jpg"><img src="../rugby/IMG-20260416-WA0015.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260416-WA0016.jpg"><img src="../rugby/IMG-20260416-WA0016.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0010.jpg"><img src="../rugby/IMG-20260422-WA0010.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0011.jpg"><img src="../rugby/IMG-20260422-WA0011.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0015.jpg"><img src="../rugby/IMG-20260422-WA0015.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0016.jpg"><img src="../rugby/IMG-20260422-WA0016.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0017.jpg"><img src="../rugby/IMG-20260422-WA0017.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0018.jpg"><img src="../rugby/IMG-20260422-WA0018.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0019.jpg"><img src="../rugby/IMG-20260422-WA0019.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0020.jpg"><img src="../rugby/IMG-20260422-WA0020.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0021.jpg"><img src="../rugby/IMG-20260422-WA0021.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0022.jpg"><img src="../rugby/IMG-20260422-WA0022.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0023.jpg"><img src="../rugby/IMG-20260422-WA0023.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+      <div class="media-item" data-cat="rugby" data-src="../rugby/IMG-20260422-WA0024.jpg"><img src="../rugby/IMG-20260422-WA0024.jpg" alt="Rugby" loading="lazy" /><div class="media-overlay"><span>Rugby</span></div></div>
+    </div>
+
+    <!-- FOOTBALL PHOTOS -->
+    <div class="gallery-section-head" data-section="football">⚽ Football</div>
+    <div class="media-grid">
+      <div class="media-item" data-cat="football" data-src="../football/IMG-20260424-WA0028.jpg"><img src="../football/IMG-20260424-WA0028.jpg" alt="Football" loading="lazy" /><div class="media-overlay"><span>Football</span></div></div>
+      <div class="media-item" data-cat="football" data-src="../football/IMG-20260424-WA0029.jpg"><img src="../football/IMG-20260424-WA0029.jpg" alt="Football" loading="lazy" /><div class="media-overlay"><span>Football</span></div></div>
+    </div>
+
+    <!-- NETBALL PHOTOS -->
+    <div class="gallery-section-head" data-section="netball">🏐 Netball</div>
+    <div class="media-grid">
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0080.jpg"><img src="../Netball/IMG-20260603-WA0080.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0081.jpg"><img src="../Netball/IMG-20260603-WA0081.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0082.jpg"><img src="../Netball/IMG-20260603-WA0082.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0083.jpg"><img src="../Netball/IMG-20260603-WA0083.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0084.jpg"><img src="../Netball/IMG-20260603-WA0084.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0085.jpg"><img src="../Netball/IMG-20260603-WA0085.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0086.jpg"><img src="../Netball/IMG-20260603-WA0086.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0087.jpg"><img src="../Netball/IMG-20260603-WA0087.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0088.jpg"><img src="../Netball/IMG-20260603-WA0088.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0089.jpg"><img src="../Netball/IMG-20260603-WA0089.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0090.jpg"><img src="../Netball/IMG-20260603-WA0090.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+      <div class="media-item" data-cat="netball" data-src="../Netball/IMG-20260603-WA0091.jpg"><img src="../Netball/IMG-20260603-WA0091.jpg" alt="Netball" loading="lazy" /><div class="media-overlay"><span>Netball</span></div></div>
+    </div>
+
+    <!-- VIDEOS -->
+    <div class="gallery-section-head" data-section="video">🎬 Videos</div>
+    <div class="media-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none" poster=""><source src="../AWARDS/202604221102.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/202604221111.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/202604221122.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/202604221137.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/202604221147.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/202604221156.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/202604221224.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/202604221250.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/awards1.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/awards2.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/awards3.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/awards4.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏆 Awards</div><video controls preload="none"><source src="../AWARDS/awards5.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏉 Rugby</div><video controls preload="none"><source src="../rugby/rugby1.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏉 Rugby</div><video controls preload="none"><source src="../rugby/rugby2.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏉 Rugby</div><video controls preload="none"><source src="../rugby/rugby3.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏉 Rugby</div><video controls preload="none"><source src="../rugby/rugby4.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">🏉 Rugby</div><video controls preload="none"><source src="../rugby/VID-20260520-WA0040.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">⚽ Football</div><video controls preload="none"><source src="../football/football1.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">⚽ Football</div><video controls preload="none"><source src="../football/VID-20260424-WA0032.mp4" type="video/mp4" /></video></div>
+      <div class="video-item" data-cat="video"><div class="video-badge">⚽ Football</div><video controls preload="none"><source src="../football/VID-20260425-WA0000.mp4" type="video/mp4" /></video></div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lb" id="lb">
+    <span class="lb-close" id="lb-close">&times;</span>
+    <img id="lb-img" src="" alt="Gallery image" />
+    <div class="lb-nav">
+      <button id="lb-prev">&#8592;</button>
+      <button id="lb-next">&#8594;</button>
+    </div>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Windsor Secondary School</h4>
+        <p>Committed to academic excellence, character development, and producing well-rounded citizens.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61581281594797" target="_blank" rel="noopener" class="social-link"><span class="s-icon">📘</span> Facebook</a>
+          <a href="https://www.instagram.com/?igsh=1d7deqlov3ocl&utm_content=b2wk9dw" target="_blank" rel="noopener" class="social-link"><span class="s-icon">📸</span> Instagram</a>
+          <a href="https://www.tiktok.com/@windsorsecondaryschool" target="_blank" rel="noopener" class="social-link"><span class="s-icon">🎵</span> TikTok</a>
+          <a href="https://wa.me/27825052456" target="_blank" rel="noopener" class="social-link"><span class="s-icon">💬</span> WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="fees.html">Fees &amp; Banking</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>📍 28 Forbes Street, Ladysmith, 3370</li>
+          <li>📞 036 637 2011</li>
+          <li>💬 +27 82 505 2456</li>
+          <li>✉️ windsorsecondary1@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Windsor Secondary School &bull; <em>Discipulus Tuus Sum</em></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // ===== FILTER =====
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        document.querySelectorAll('.media-item, .video-item').forEach(item => {
+          item.style.display = (f === 'all' || item.dataset.cat === f) ? '' : 'none';
+        });
+        document.querySelectorAll('.gallery-section-head').forEach(head => {
+          const sec = head.dataset.section;
+          if (f === 'all') { head.style.display = ''; return; }
+          const visible = sec === f || (f === 'video' && sec === 'video');
+          head.style.display = visible ? '' : 'none';
+        });
+      });
+    });
+
+    // ===== LIGHTBOX =====
+    let allPhotos = [], lbIdx = 0;
+    function buildPhotoList() {
+      allPhotos = [...document.querySelectorAll('.media-item[data-src]')]
+        .filter(el => el.style.display !== 'none')
+        .map(el => el.dataset.src);
+    }
+
+    document.querySelectorAll('.media-item[data-src]').forEach((item, i) => {
+      item.addEventListener('click', () => {
+        buildPhotoList();
+        lbIdx = allPhotos.indexOf(item.dataset.src);
+        showLb(lbIdx);
+      });
+    });
+
+    function showLb(idx) {
+      const lb = document.getElementById('lb');
+      const img = document.getElementById('lb-img');
+      const ctr = document.getElementById('lb-counter');
+      img.src = allPhotos[idx];
+      ctr.textContent = (idx + 1) + ' / ' + allPhotos.length;
+      lb.classList.add('open');
+    }
+
+    document.getElementById('lb-close').addEventListener('click', () => document.getElementById('lb').classList.remove('open'));
+    document.getElementById('lb-prev').addEventListener('click', () => { lbIdx = (lbIdx - 1 + allPhotos.length) % allPhotos.length; showLb(lbIdx); });
+    document.getElementById('lb-next').addEventListener('click', () => { lbIdx = (lbIdx + 1) % allPhotos.length; showLb(lbIdx); });
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lb').classList.contains('open')) return;
+      if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % allPhotos.length; showLb(lbIdx); }
+      if (e.key === 'ArrowLeft')  { lbIdx = (lbIdx - 1 + allPhotos.length) % allPhotos.length; showLb(lbIdx); }
+      if (e.key === 'Escape') document.getElementById('lb').classList.remove('open');
+    });
+    document.getElementById('lb').addEventListener('click', e => { if (e.target === document.getElementById('lb')) document.getElementById('lb').classList.remove('open'); });
+  </script>
+</body>
+</html>

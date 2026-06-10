@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Calendar 2026 - Windsor Secondary School</title>
+  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <style>
+    .cal-page { max-width: 1300px; margin: 0 auto; }
+
+    /* Month navigation */
+    .cal-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .cal-nav button {
+      background: var(--M); color: var(--G);
+      border: 1px solid var(--Gd); padding: 0.65rem 1.75rem;
+      font-family: 'Outfit', sans-serif; font-size: 0.9rem;
+      font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .cal-nav button:hover { background: var(--Ml); }
+    .cal-nav h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem; font-weight: 700; color: var(--M);
+      text-align: center;
+    }
+    .cal-nav .term-badge {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--Gd);
+      display: block; text-align: center; margin-top: 0.25rem;
+    }
+
+    /* Day headers */
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .cal-day-header {
+      background: var(--M);
+      color: var(--G);
+      text-align: center;
+      padding: 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* Day cells */
+    .cal-cell {
+      background: var(--W);
+      border: 1px solid var(--Cd);
+      min-height: 130px;
+      padding: 0.5rem 0.6rem;
+      position: relative;
+      vertical-align: top;
+      transition: background 0.15s;
+    }
+    .cal-cell:hover { background: #fdf8f0; }
+    .cal-cell.empty { background: #faf5ec; border-color: #ede3cc; }
+    .cal-cell.today { border: 2px solid var(--M); background: #fff8f0; }
+
+    .day-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--M); line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .cal-cell.empty .day-num { color: #ccc; }
+
+    /* Event pills */
+    .ev {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      margin-bottom: 3px;
+      line-height: 1.5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: default;
+    }
+    .ev:hover { white-space: normal; overflow: visible; z-index: 10; position: relative; }
+    .ev-smt    { background: #5c0a1a; color: #e8c96a; }
+    .ev-exam   { background: #1a2a5a; color: #90a8e0; }
+    .ev-sport  { background: #1a4a1a; color: #90d090; }
+    .ev-parent { background: #4a3a00; color: #d0b040; }
+    .ev-culture{ background: #3a1a4a; color: #c090d0; }
+    .ev-school { background: #3d0610; color: #f0d080; }
+    .ev-multi  { background: var(--Cd); color: var(--M); }
+
+    /* Legend */
+    .legend-bar {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      margin-bottom: 1.5rem; align-items: center;
+    }
+    .legend-bar span {
+      font-size: 0.75rem; font-weight: 700;
+      padding: 0.25rem 0.75rem; border-radius: 2px;
+    }
+
+    /* Term indicator strip */
+    .term-strip {
+      height: 5px;
+      background: linear-gradient(90deg, var(--M) 0%, var(--M) 65%, var(--G) 65%, var(--G) 82%, var(--Gl) 82%, var(--Gl) 100%);
+      margin-bottom: 1rem;
+    }
+
+    @media(max-width:700px) {
+      .cal-cell { min-height: 70px; }
+      .ev { font-size: 0.6rem; }
+      .day-num { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-brand"><span>Windsor Secondary School</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="calendar.html" class="active">Calendar</a></li>
+      <li><a href="uniform.html">Uniform</a></li>
+      <li><a href="admissions.html">Admissions</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page-banner">
+    <img src="../images/logo.png" alt="" class="page-banner-watermark" aria-hidden="true" />
+    <h1>School <em>Calendar</em> 2026</h1>
+    <p>Windsor Secondary School — Annual Year Plan</p>
+  </div>
+
+  <section style="background:var(--C);">
+    <div class="cal-page">
+
+      <!-- Legend -->
+      <div class="legend-bar">
+        <strong style="font-size:0.7rem;color:var(--T);letter-spacing:1px;text-transform:uppercase;">Legend:</strong>
+        <span class="ev ev-school">School Open/Close</span>
+        <span class="ev ev-smt">SMT / Staff</span>
+        <span class="ev ev-exam">Exam / Assessment</span>
+        <span class="ev ev-sport">Sport</span>
+        <span class="ev ev-parent">Parents</span>
+        <span class="ev ev-culture">Culture</span>
+        <span style="background:#b34000;color:#fff;font-size:0.68rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:2px;">🇿🇦 Public Holiday</span>
+        <span style="background:#fffdf8;border:1px solid var(--Cd);color:var(--T);font-size:0.68rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:2px;">Term Day</span>
+        <span style="background:#f5f0f8;border:1px solid var(--Cd);color:var(--T);font-size:0.68rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:2px;">School Holiday</span>
+      </div>
+
+      <!-- Nav -->
+      <div class="cal-nav">
+        <button onclick="prevMonth()">&#8592; Prev</button>
+        <div>
+          <h2 id="cal-title"></h2>
+          <span class="term-badge" id="term-badge"></span>
+        </div>
+        <button onclick="nextMonth()">Next &#8594;</button>
+      </div>
+
+      <div class="term-strip"></div>
+
+      <!-- Calendar grid -->
+      <div class="cal-grid" id="cal-grid">
+        <div class="cal-day-header">Sun</div>
+        <div class="cal-day-header">Mon</div>
+        <div class="cal-day-header">Tue</div>
+        <div class="cal-day-header">Wed</div>
+        <div class="cal-day-header">Thu</div>
+        <div class="cal-day-header">Fri</div>
+        <div class="cal-day-header">Sat</div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Windsor Secondary School</h4>
+        <p>Committed to academic excellence, character development, and producing well-rounded citizens.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61581281594797" target="_blank" rel="noopener" class="social-link"><span class="s-icon">📘</span> Facebook</a>
+          <a href="https://www.tiktok.com/@windsorsecondaryschool" target="_blank" rel="noopener" class="social-link"><span class="s-icon">🎵</span> TikTok</a>
+          <a href="https://wa.me/27825052456" target="_blank" rel="noopener" class="social-link"><span class="s-icon">💬</span> WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>📍 28 Forbes Street, Ladysmith</li>
+          <li>📞 +27 36 637 2011</li>
+          <li>✉️ windsorsecondary1@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Windsor Secondary School &bull; <em>Discipulus Tuus Sum</em></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  // ===== SCHOOL EVENTS =====
+  const events = {
+    '2026-01-12': [{t:'Grade 10 Subject Selection', c:'ev-smt'}],
+    '2026-01-13': [{t:'Grade 8 Induction', c:'ev-smt'},{t:'Matric Certificates', c:'ev-smt'}],
+    '2026-01-14': [{t:'🏫 School Opens T1', c:'ev-school'},{t:'Baseline Evaluation starts', c:'ev-exam'}],
+    '2026-01-16': [{t:'Awards Function', c:'ev-culture'}],
+    '2026-01-17': [{t:'Strategic Workshop', c:'ev-smt'}],
+    '2026-01-19': [{t:'SMT Meeting', c:'ev-smt'},{t:'Baseline Evaluation ends', c:'ev-exam'}],
+    '2026-01-21': [{t:'Department Meetings', c:'ev-smt'}],
+    '2026-01-23': [{t:'Gr12 Parents Meeting', c:'ev-parent'},{t:'RCL Elections', c:'ev-smt'}],
+    '2026-01-26': [{t:'Learner Screening starts', c:'ev-multi'},{t:'SMT Meeting', c:'ev-smt'}],
+    '2026-01-28': [{t:'Athletic Meeting', c:'ev-sport'}],
+    '2026-01-30': [{t:'Submit March Tests', c:'ev-smt'},{t:'Learner Screening ends', c:'ev-multi'}],
+    '2026-02-02': [{t:'By Elections', c:'ev-smt'}],
+    '2026-02-04': [{t:'Athletic Meeting', c:'ev-sport'}],
+    '2026-02-06': [{t:'Athletic Day', c:'ev-sport'}],
+    '2026-02-09': [{t:'Learner Books Control starts', c:'ev-multi'}],
+    '2026-02-13': [{t:'Learner Books Control ends', c:'ev-multi'}],
+    '2026-02-16': [{t:'QMS starts', c:'ev-multi'}],
+    '2026-02-20': [{t:'QMS ends', c:'ev-multi'}],
+    '2026-02-21': [{t:'Parents Meeting', c:'ev-parent'}],
+    '2026-02-24': [{t:'Staff Meeting', c:'ev-smt'}],
+    '2026-02-27': [{t:'Exam Committee Meeting', c:'ev-exam'}],
+    '2026-03-02': [{t:'Gr12 Mock Exam starts', c:'ev-exam'}],
+    '2026-03-06': [{t:'Gr12 Mock Exam ends', c:'ev-exam'}],
+    '2026-03-09': [{t:'Revision Gr8-11 starts', c:'ev-multi'}],
+    '2026-03-12': [{t:'Revision Gr8-11 ends', c:'ev-multi'}],
+    '2026-03-16': [{t:'Examinations All Grades starts', c:'ev-exam'}],
+    '2026-03-27': [{t:'Examinations ends', c:'ev-exam'},{t:'🏫 School Closes T1', c:'ev-school'}],
+    '2026-04-08': [{t:'🏫 School Opens T2', c:'ev-school'},{t:'Staff Briefing', c:'ev-smt'}],
+    '2026-04-13': [{t:'Intervention Meeting', c:'ev-smt'}],
+    '2026-04-16': [{t:'Analysis of Results', c:'ev-smt'}],
+    '2026-04-17': [{t:'Issuing of Reports', c:'ev-parent'}],
+    '2026-04-22': [{t:'Gr12 Analysis', c:'ev-smt'},{t:'QMS starts', c:'ev-multi'}],
+    '2026-04-30': [{t:'QMS ends', c:'ev-multi'},{t:'Submit June Exam QP', c:'ev-exam'}],
+    '2026-05-04': [{t:'Learner Books Control starts', c:'ev-multi'}],
+    '2026-05-08': [{t:'Learner Books Control ends', c:'ev-multi'}],
+    '2026-05-09': [{t:'Parents Meeting', c:'ev-parent'}],
+    '2026-05-12': [{t:'Netball Meeting', c:'ev-sport'}],
+    '2026-05-14': [{t:'Staff Meeting', c:'ev-smt'}],
+    '2026-05-20': [{t:'Football Meeting', c:'ev-sport'}],
+    '2026-06-01': [{t:'Gr12 Mock Exam starts', c:'ev-exam'}],
+    '2026-06-05': [{t:'Gr12 Mock Exam ends', c:'ev-exam'}],
+    '2026-06-08': [{t:'Revision Gr8-12 starts', c:'ev-multi'},{t:'June Exam starts', c:'ev-exam'}],
+    '2026-06-12': [{t:'Revision ends', c:'ev-multi'}],
+    '2026-06-25': [{t:'June Exam ends', c:'ev-exam'}],
+    '2026-06-26': [{t:'🏫 School Closes T2', c:'ev-school'}],
+    '2026-07-21': [{t:'🏫 School Opens T3', c:'ev-school'},{t:'Briefing', c:'ev-smt'}],
+    '2026-07-27': [{t:'Analysis of Results', c:'ev-smt'}],
+    '2026-07-29': [{t:'Intervention Meeting', c:'ev-smt'}],
+    '2026-07-31': [{t:'Open Day / Reports', c:'ev-parent'}],
+    '2026-08-04': [{t:'Grade Analysis of Results', c:'ev-smt'}],
+    '2026-08-05': [{t:'School League starts', c:'ev-sport'}],
+    '2026-08-07': [{t:'Career Day Gr9', c:'ev-smt'}],
+    '2026-08-11': [{t:'Summative Evaluations starts', c:'ev-exam'}],
+    '2026-08-21': [{t:'Summative Evaluations ends', c:'ev-exam'}],
+    '2026-08-26': [{t:'School League ends', c:'ev-sport'}],
+    '2026-08-27': [{t:'Staff Meeting', c:'ev-smt'}],
+    '2026-09-04': [{t:'Heritage Day Celebration', c:'ev-culture'}],
+    '2026-09-07': [{t:'Arbour Day', c:'ev-culture'}],
+    '2026-09-12': [{t:'Parents Meeting', c:'ev-parent'}],
+    '2026-09-23': [{t:'🏫 School Closes T3', c:'ev-school'}],
+    '2026-09-24': [{t:'Gr12 Mock Exam starts', c:'ev-exam'}],
+    '2026-09-28': [{t:'Gr12 Mock Exam ends', c:'ev-exam'}],
+    '2026-10-06': [{t:'🏫 School Opens T4', c:'ev-school'}],
+    '2026-10-13': [{t:'Analysis of Results', c:'ev-smt'}],
+    '2026-10-15': [{t:'Issuing of Reports', c:'ev-parent'}],
+  };
+
+  // ===== SA PUBLIC HOLIDAYS 2026 =====
+  const holidays = {
+    '2026-01-01': "New Year's Day",
+    '2026-03-21': 'Human Rights Day',
+    '2026-04-03': 'Good Friday',
+    '2026-04-06': 'Family Day',
+    '2026-04-27': 'Freedom Day',
+    '2026-05-01': 'Workers Day',
+    '2026-06-16': 'Youth Day',
+    '2026-08-09': "National Women's Day",
+    '2026-08-10': "Women's Day (observed)",
+    '2026-09-24': 'Heritage Day',
+    '2026-12-16': 'Day of Reconciliation',
+    '2026-12-25': 'Christmas Day',
+    '2026-12-26': 'Day of Goodwill',
+  };
+
+  // ===== TERM PERIODS (school days shaded) =====
+  // Term 1: 14 Jan – 27 Mar
+  // Term 2: 8 Apr – 26 Jun
+  // Term 3: 21 Jul – 23 Sep
+  // Term 4: 6 Oct – 4 Dec
+  function inTerm(dateStr) {
+    const d = new Date(dateStr);
+    const t1s = new Date('2026-01-14'), t1e = new Date('2026-03-27');
+    const t2s = new Date('2026-04-08'), t2e = new Date('2026-06-26');
+    const t3s = new Date('2026-07-21'), t3e = new Date('2026-09-23');
+    const t4s = new Date('2026-10-06'), t4e = new Date('2026-12-04');
+    return (d>=t1s&&d<=t1e)||(d>=t2s&&d<=t2e)||(d>=t3s&&d<=t3e)||(d>=t4s&&d<=t4e);
+  }
+
+  const terms = [
+    { months: [0,1,2], label: 'Term 1: 14 Jan – 27 Mar' },
+    { months: [3,4,5], label: 'Term 2: 8 Apr – 26 Jun' },
+    { months: [6,7,8], label: 'Term 3: 21 Jul – 23 Sep' },
+    { months: [9,10,11], label: 'Term 4: 6 Oct – 4 Dec' },
+  ];
+
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  let currentYear = 2026;
+  let currentMonth = 0;
+
+  function getTerm(month) {
+    for (const t of terms) { if (t.months.includes(month)) return t.label; }
+    return 'School Holiday';
+  }
+
+  function pad(n) { return String(n).padStart(2,'0'); }
+
+  function renderCalendar() {
+    const title = document.getElementById('cal-title');
+    const badge = document.getElementById('term-badge');
+    const grid  = document.getElementById('cal-grid');
+
+    title.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    badge.textContent = getTerm(currentMonth);
+
+    while (grid.children.length > 7) grid.removeChild(grid.lastChild);
+
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const today = new Date();
+
+    for (let i = 0; i < firstDay; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cal-cell empty';
+      grid.appendChild(cell);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const key = `${currentYear}-${pad(currentMonth+1)}-${pad(d)}`;
+      const cell = document.createElement('div');
+      const isToday = today.getFullYear()===currentYear && today.getMonth()===currentMonth && today.getDate()===d;
+      const isHoliday = !!holidays[key];
+      const isTerm = inTerm(key);
+      const dow = new Date(currentYear, currentMonth, d).getDay();
+      const isWeekend = dow === 0 || dow === 6;
+
+      let cls = 'cal-cell';
+      if (isToday) cls += ' today';
+      if (isHoliday) cls += ' holiday';
+      cell.className = cls;
+
+      // Background tint
+      if (isHoliday) {
+        cell.style.background = '#fff0e8';
+      } else if (isWeekend) {
+        cell.style.background = '#faf5ec';
+      } else if (isTerm) {
+        cell.style.background = '#fffdf8';
+      } else {
+        cell.style.background = '#f5f0f8'; // holiday period
+      }
+
+      const num = document.createElement('div');
+      num.className = 'day-num';
+      num.textContent = d;
+      if (isWeekend) num.style.color = '#aaa';
+      cell.appendChild(num);
+
+      // Public holiday label
+      if (isHoliday) {
+        const hl = document.createElement('span');
+        hl.className = 'ev ev-holiday';
+        hl.textContent = '🇿🇦 ' + holidays[key];
+        hl.style.cssText = 'background:#b34000;color:#fff;display:block;font-size:0.58rem;padding:0.15rem 0.4rem;border-radius:2px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+        hl.title = holidays[key];
+        cell.appendChild(hl);
+      }
+
+      // School events
+      if (events[key]) {
+        events[key].forEach(ev => {
+          const pill = document.createElement('span');
+          pill.className = `ev ${ev.c}`;
+          pill.textContent = ev.t;
+          pill.title = ev.t;
+          cell.appendChild(pill);
+        });
+      }
+
+      grid.appendChild(cell);
+    }
+  }
+
+  function prevMonth() {
+    if (currentMonth === 0) { currentMonth = 11; currentYear--; }
+    else currentMonth--;
+    renderCalendar();
+  }
+
+  function nextMonth() {
+    if (currentMonth === 11) { currentMonth = 0; currentYear++; }
+    else currentMonth++;
+    renderCalendar();
+  }
+
+  renderCalendar();
+  </script>
+    '2026-01-12': [{t:'Grade 10 Subject Selection', c:'ev-smt'}],
+    '2026-01-13': [{t:'Grade 8 Induction', c:'ev-smt'},{t:'Matric Certificates', c:'ev-smt'}],
+    '2026-01-14': [{t:'🏫 School Opens', c:'ev-school'},{t:'Baseline Evaluation starts', c:'ev-exam'}],
+    '2026-01-16': [{t:'Awards Function', c:'ev-culture'}],
+    '2026-01-17': [{t:'Strategic Workshop', c:'ev-smt'}],
+    '2026-01-19': [{t:'SMT Meeting', c:'ev-smt'},{t:'Baseline Evaluation ends', c:'ev-exam'}],
+    '2026-01-21': [{t:'Department Meetings', c:'ev-smt'}],
+    '2026-01-23': [{t:'Gr12 Parents Meeting', c:'ev-parent'},{t:'RCL Elections', c:'ev-smt'}],
+    '2026-01-26': [{t:'Learner Screening starts', c:'ev-multi'},{t:'SMT Meeting', c:'ev-smt'}],
+    '2026-01-28': [{t:'Athletic Meeting', c:'ev-sport'}],
+    '2026-01-30': [{t:'Submission March Tests', c:'ev-smt'},{t:'Learner Screening ends', c:'ev-multi'}],
+    '2026-02-02': [{t:'By Elections', c:'ev-smt'}],
+    '2026-02-04': [{t:'Athletic Meeting', c:'ev-sport'}],
+    '2026-02-06': [{t:'Athletic Day', c:'ev-sport'}],
+    '2026-02-09': [{t:'Learner Books Control starts', c:'ev-multi'}],
+    '2026-02-13': [{t:'Learner Books Control ends', c:'ev-multi'}],
+    '2026-02-16': [{t:'QMS starts', c:'ev-multi'}],
+    '2026-02-20': [{t:'QMS ends', c:'ev-multi'}],
+    '2026-02-21': [{t:'Parents Meeting', c:'ev-parent'}],
+    '2026-02-24': [{t:'Staff Meeting', c:'ev-smt'}],
+    '2026-02-27': [{t:'Exam Committee Meeting', c:'ev-exam'}],
+    '2026-03-02': [{t:'Gr12 Mock Exam starts', c:'ev-exam'}],
+    '2026-03-06': [{t:'Gr12 Mock Exam ends', c:'ev-exam'}],
+    '2026-03-09': [{t:'Revision Gr8-11 starts', c:'ev-multi'}],
+    '2026-03-12': [{t:'Revision Gr8-11 ends', c:'ev-multi'}],
+    '2026-03-16': [{t:'Examinations All Grades starts', c:'ev-exam'}],
+    '2026-03-27': [{t:'Examinations ends', c:'ev-exam'},{t:'🏫 School Closes', c:'ev-school'}],
+    '2026-04-08': [{t:'🏫 Schools Re-Open', c:'ev-school'},{t:'Staff Briefing', c:'ev-smt'}],
+    '2026-04-13': [{t:'Intervention Meeting', c:'ev-smt'}],
+    '2026-04-16': [{t:'Analysis of Results', c:'ev-smt'}],
+    '2026-04-17': [{t:'Issuing of Reports', c:'ev-parent'}],
+    '2026-04-22': [{t:'Gr12 Analysis', c:'ev-smt'},{t:'QMS starts', c:'ev-multi'}],
+    '2026-04-30': [{t:'QMS ends', c:'ev-multi'},{t:'Submit June Exam QP', c:'ev-exam'}],
+    '2026-05-04': [{t:'Learner Books Control starts', c:'ev-multi'}],
+    '2026-05-08': [{t:'Learner Books Control ends', c:'ev-multi'}],
+    '2026-05-09': [{t:'Parents Meeting', c:'ev-parent'}],
+    '2026-05-12': [{t:'Netball Meeting', c:'ev-sport'}],
+    '2026-05-14': [{t:'Staff Meeting', c:'ev-smt'}],
+    '2026-05-20': [{t:'Football Meeting', c:'ev-sport'}],
+    '2026-06-01': [{t:'Gr12 Mock Exam starts', c:'ev-exam'}],
+    '2026-06-05': [{t:'Gr12 Mock Exam ends', c:'ev-exam'}],
+    '2026-06-08': [{t:'Revision Gr8-12 starts', c:'ev-multi'},{t:'June Exam starts', c:'ev-exam'}],
+    '2026-06-12': [{t:'Revision ends', c:'ev-multi'}],
+    '2026-06-25': [{t:'June Exam ends', c:'ev-exam'}],
+    '2026-06-26': [{t:'🏫 School Closes', c:'ev-school'}],
+    '2026-07-21': [{t:'🏫 School Re-Opens', c:'ev-school'},{t:'Briefing', c:'ev-smt'}],
+    '2026-07-27': [{t:'Analysis of Results', c:'ev-smt'}],
+    '2026-07-29': [{t:'Intervention Meeting', c:'ev-smt'}],
+    '2026-07-31': [{t:'Open Day / Reports', c:'ev-parent'}],
+    '2026-08-04': [{t:'Grade Analysis of Results', c:'ev-smt'}],
+    '2026-08-05': [{t:'School League starts', c:'ev-sport'}],
+    '2026-08-07': [{t:'Career Day Gr9', c:'ev-smt'}],
+    '2026-08-11': [{t:'Summative Evaluations starts', c:'ev-exam'}],
+    '2026-08-21': [{t:'Summative Evaluations ends', c:'ev-exam'}],
+    '2026-08-26': [{t:'School League ends', c:'ev-sport'}],
+    '2026-08-27': [{t:'Staff Meeting', c:'ev-smt'}],
+    '2026-09-04': [{t:'Heritage Day Celebration', c:'ev-culture'}],
+    '2026-09-07': [{t:'Arbour Day', c:'ev-culture'}],
+    '2026-09-12': [{t:'Parents Meeting', c:'ev-parent'}],
+    '2026-09-23': [{t:'🏫 School Closes', c:'ev-school'}],
+    '2026-09-24': [{t:'Gr12 Mock Exam starts', c:'ev-exam'}],
+    '2026-09-28': [{t:'Gr12 Mock Exam ends', c:'ev-exam'}],
+    '2026-10-06': [{t:'🏫 School Opens', c:'ev-school'}],
+    '2026-10-13': [{t:'Analysis of Results', c:'ev-smt'}],
+    '2026-10-15': [{t:'Issuing of Reports', c:'ev-parent'}],
+  };
+
+  const terms = [
+    { months: [0,1,2], label: 'Term 1: 14 Jan – 27 Mar' },
+    { months: [3,4,5], label: 'Term 2: 8 Apr – 26 Jun' },
+    { months: [6,7,8], label: 'Term 3: 21 Jul – 23 Sep' },
+    { months: [9,10,11], label: 'Term 4: 6 Oct – Dec' },
+  ];
+
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  let currentYear = 2026;
+  let currentMonth = 0; // January
+
+  function getTerm(month) {
+    for (const t of terms) {
+      if (t.months.includes(month)) return t.label;
+    }
+    return '';
+  }
+
+  function pad(n) { return String(n).padStart(2,'0'); }
+
+  function renderCalendar() {
+    const title = document.getElementById('cal-title');
+    const badge = document.getElementById('term-badge');
+    const grid  = document.getElementById('cal-grid');
+
+    title.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    badge.textContent = getTerm(currentMonth);
+
+    // Remove old day cells (keep 7 header cells)
+    while (grid.children.length > 7) grid.removeChild(grid.lastChild);
+
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const today = new Date();
+
+    // Empty cells before first day
+    for (let i = 0; i < firstDay; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cal-cell empty';
+      grid.appendChild(cell);
+    }
+
+    // Day cells
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cell = document.createElement('div');
+      const key = `${currentYear}-${pad(currentMonth+1)}-${pad(d)}`;
+      const isToday = today.getFullYear() === currentYear && today.getMonth() === currentMonth && today.getDate() === d;
+
+      cell.className = 'cal-cell' + (isToday ? ' today' : '');
+
+      const num = document.createElement('div');
+      num.className = 'day-num';
+      num.textContent = d;
+      cell.appendChild(num);
+
+      if (events[key]) {
+        events[key].forEach(ev => {
+          const pill = document.createElement('span');
+          pill.className = `ev ${ev.c}`;
+          pill.textContent = ev.t;
+          pill.title = ev.t;
+          cell.appendChild(pill);
+        });
+      }
+
+      grid.appendChild(cell);
+    }
+  }
+
+  function prevMonth() {
+    if (currentMonth === 0) { currentMonth = 11; currentYear--; }
+    else currentMonth--;
+    renderCalendar();
+  }
+
+  function nextMonth() {
+    if (currentMonth === 11) { currentMonth = 0; currentYear++; }
+    else currentMonth++;
+    renderCalendar();
+  }
+
+  renderCalendar();
+  </script>
+</body>
+</html>
