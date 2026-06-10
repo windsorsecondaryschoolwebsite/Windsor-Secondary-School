@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Windsor Secondary School</title>
+  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <style>
+    .about-section { max-width: 900px; margin: 0 auto; }
+    .about-block { margin-bottom: 3rem; }
+    .about-block h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 700;
+      color: var(--M); margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--G);
+      display: inline-block;
+    }
+    .about-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--Gd);
+      margin: 1.5rem 0 0.75rem;
+    }
+    .about-block p {
+      color: var(--T); line-height: 1.85;
+      font-size: 0.95rem; margin-bottom: 1rem;
+    }
+    .about-block ul {
+      list-style: none; padding: 0; margin-bottom: 1rem;
+    }
+    .about-block ul li {
+      color: var(--T); font-size: 0.92rem;
+      line-height: 1.7; padding: 0.4rem 0;
+      border-bottom: 1px solid var(--Cd);
+      display: flex; gap: 0.75rem; align-items: flex-start;
+    }
+    .about-block ul li::before { content: '◆'; color: var(--G); font-size: 0.5rem; margin-top: 0.5rem; flex-shrink: 0; }
+    .logbook {
+      background: var(--Cd); border-left: 4px solid var(--M);
+      padding: 1.25rem 1.5rem; margin: 1.25rem 0;
+      font-size: 0.9rem; color: var(--D); line-height: 1.8;
+      font-style: italic;
+    }
+    .logbook strong { font-style: normal; color: var(--M); }
+    .principal-card {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 2rem; background: var(--W);
+      border: 1px solid var(--Cd); border-left: 4px solid var(--M);
+      padding: 2rem; margin-bottom: 2rem;
+      box-shadow: 0 2px 16px rgba(92,10,26,0.07);
+    }
+    .principal-card .p-photo {
+      background: var(--M); border: 2px solid var(--G);
+      aspect-ratio: 1; display: flex; align-items: center;
+      justify-content: center; color: var(--G); font-size: 3rem;
+    }
+    .principal-card .p-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 700; color: var(--M);
+      margin-bottom: 0.25rem;
+    }
+    .principal-card .p-title {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--Gd); margin-bottom: 1rem;
+    }
+    .principal-card p { color: var(--T); font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.75rem; }
+    .principal-card .p-sign { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--M); font-size: 1rem; margin-top: 1rem; }
+    .emblem-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .emblem-card { background: var(--W); border: 1px solid var(--Cd); border-top: 3px solid var(--G); padding: 1.5rem; text-align: center; }
+    .emblem-card .year { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--M); }
+    .emblem-card h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--Gd); margin: 0.5rem 0; }
+    .emblem-card p { font-size: 0.85rem; color: var(--T); line-height: 1.6; }
+    @media(max-width:600px) { .principal-card { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-brand">
+      <span>Windsor Secondary School</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="calendar.html">Calendar</a></li><li><a href="uniform.html">Uniform</a></li><li><a href="admissions.html">Admissions</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page-banner">
+    <img src="../images/logo.png" alt="" class="page-banner-watermark" aria-hidden="true" />
+    <h1>About <em>Windsor</em></h1>
+    <p>Our history, vision, and identity</p>
+  </div>
+
+  <section style="background: var(--C);">
+    <div class="about-section">
+
+      <!-- MISSION -->
+      <div class="about-block">
+        <h2>Our Mission</h2>
+        <p>Windsor subscribes to the ageless credo that the learner is the focal point of the learning and teaching process. The school shall commit itself to the:</p>
+        <ul>
+          <li>Provision of quality education to all its learners.</li>
+          <li>Recognise the individuality of the learners, develop and equip them with skills relevant to their development in society.</li>
+          <li>Maximizing the holistic development of the individual, incorporating the academic, moral and spiritual growth.</li>
+          <li>Maintenance of a disciplinary code that would recognise the dignity and uniqueness of the learner.</li>
+          <li>Contracting and fostering appropriate ethics and values through appropriate role-setting and education.</li>
+          <li>Sustainable programmes embedded in quality and excellence.</li>
+        </ul>
+      </div>
+
+      <!-- PRINCIPAL'S MESSAGE -->
+      <div class="about-block">
+        <h2>Message from the Principal</h2>
+        <div class="principal-card">
+          <div class="p-photo">👨‍💼</div>
+          <div>
+            <div class="p-name">Mr K.R. Mbatha</div>
+            <div class="p-title">Principal — Windsor Secondary School</div>
+            <p><strong>Dear Parent / Guardian,</strong></p>
+            <p>Warm Windsor Greetings. On behalf of the staff at Windsor Secondary, I am happy to welcome you and your child/ward to the 2026 academic year. We are looking forward to a productive partnership with you to ensure our children can achieve their highest potential.</p>
+            <p>We recognise that to be successful in school our children need support from both home and school. We know a strong partnership with you will make a significant difference in your child's education. As parents we share the responsibility for our children's success and want you to know that we will do our very best to carry out our responsibility.</p>
+            <p>Our theme for 2026 is <strong>"PROMOTING EXCELLENCE THROUGH DETERMINATION AND HARD WORK"</strong>. We ask that you guide and support your child/ward's learning by ensuring that:</p>
+            <ul style="list-style:none;padding:0;margin:0.5rem 0 1rem;">
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;He/She attends school daily and arrives on time</li>
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;Completes all homework/assignments given by educators</li>
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;Informs you if he/she needs additional support in any area or subject</li>
+            </ul>
+            <p>Please do not hesitate to contact or book an appointment to see the school principal if you wish to discuss any issues or challenges regarding your child/ward.</p>
+            <hr style="border:none;border-top:1px solid var(--Cd);margin:1rem 0;" />
+            <p><strong>Dear Learner,</strong></p>
+            <p>Warm Windsor greetings future patriots. While this is my second year as the Principal at Windsor Secondary School, the outstanding staff and community of Windsor Secondary is not new to me. I was a teacher at Windsor from 2013 till present.</p>
+            <p>Windsor is a pretty easy school to navigate... so do not worry Grade 8's — you won't get lost and even if you do, there are people here who will help you, i.e. Prefects.</p>
+            <p>During your time here you will meet so many tremendous teachers. Watching teachers go above and beyond to support students is something I am proud of. Of course teachers are there for students academically but they also run a wide range of extra-curricular programming.</p>
+            <p>To all future Patriots, I want to welcome you to the Windsor family — believe it or not, you will be Windsor Secondary's graduating class of 2031.</p>
+            <div class="p-sign">Yours in Education — Mr K.R. Mbatha, Principal</div>
+          </div>
+        </div>
+
+        <div class="principal-card" style="margin-top:1.5rem;">
+          <div class="p-photo">👨‍🏫</div>
+          <div>
+            <div class="p-name">Mr N.P. Mkhasibe</div>
+            <div class="p-title">Head of Grade 8</div>
+            <p>Starting a High school life may come with social and emotional changes, loss of seniority and a sense of belonging, confusion etc. Try to develop and master the following in order to cope with high school life:</p>
+            <ul style="list-style:none;padding:0;margin:0.5rem 0 1rem;">
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;Master physical, personal and social changes</li>
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;Make peace with your loss of seniority at high school</li>
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;Understand that there is little independence allowed in your freshmen year</li>
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;Responsibility is not the same as experienced in primary school</li>
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;Expect that you will have an anonymous identity for the first weeks or month</li>
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;Carefully choose friends with an academic excellence mentality in the process of trying to blend in</li>
+              <li style="padding:0.3rem 0;color:var(--T);font-size:0.9rem;">◆ &nbsp;Establish a sense of belonging</li>
+            </ul>
+            <div style="background:linear-gradient(135deg,#3d0610,#5c0a1a);padding:1rem 1.25rem;border-radius:4px;margin-top:0.5rem;">
+              <p style="color:rgba(255,255,255,0.9);font-size:0.88rem;line-height:1.7;margin:0;"><strong style="color:var(--G);">Grade 8 Induction 2026:</strong> Tuesday, 13 January 2026 &bull; Time: 08:00<br/>Venue: Windsor Secondary School &bull; Dress Code: Summer School Uniform</p>
+            </div>
+            <div class="p-sign">Mr N.P. Mkhasibe — Head of Grade 8</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-block">
+        <h2>Windsor's Vision</h2>
+        <p>Windsor shall strive to be the site of education excellence through a sustained all-round development of the learner the acquisition of skill, values and attitude.</p>
+      </div>
+
+      <!-- GRADE 8 INDUCTION -->
+      <div class="about-block">
+        <h2>Grade 8 Induction 2026</h2>
+        <div class="note-box">
+          <p><strong>Grade 8 Induction:</strong> The induction took place on Tuesday, 13 January 2026 at 08:00 in the Windsor Secondary School hall. Learners were asked to arrive in <strong>Summer School Uniform</strong> and to prepare for the first day of high school with the stationery and documents required.</p>
+          <p><strong>Preparing for High School:</strong> Parents and learners are encouraged to support a smooth transition by prioritising attendance, completing homework, and communicating with the school if extra help is needed.</p>
+          <a href="uniform.html" class="btn btn-gold" style="margin-top:1rem; display:inline-block; text-decoration:none;">View Full Uniform Schedule</a>
+        </div>
+        <div class="note-box">
+          <p><strong>Message from the Principal:</strong> Warm Windsor greetings. Our theme for the year is <em>“Promoting Excellence Through Determination and Hard Work.”</em> Parents are asked to support learners by ensuring they attend daily, complete homework, and let the school know when extra help is needed.</p>
+        </div>
+      </div>
+
+      <!-- WHY THE NAME -->
+      <div class="about-block">
+        <h2>Why the Name 'Windsor'?</h2>
+        <p>To many, the name Windsor is synonymous with the Royal Family of Windsor. However, Windsor Secondary School drew its name from the first name given to the British colonial settlement on the banks of the Klip River in 1852. Lieutenant Governor King gave his blessing for the small settlement to be called Windsor.</p>
+        <p>In 1955, the principal of the school, the late Mr. N.G. Chetty, decided to rename the school.</p>
+        <div class="logbook">
+          <strong>LOG BOOK ENTRY:</strong> 4th November 1955 — "the Director of Education, advised as per minute dated 3 November 1955, that forthwith, the Ladysmith Government Indian Secondary School, will be known as the Windsor Government Indian High School."
+        </div>
+        <p>It is significant that the names of the streets around the school are called BUCKINGHAM, PRINCESS, KING and QUEENS Streets. In 1994 The Buckingham Hall was erected, celebrating 90 years of sustained commitment to lifelong learning in KwaZulu-Natal. The Windsor Hall is one of the biggest halls in Ladysmith. Our school is now known as "The Windsor Secondary School".</p>
+      </div>
+
+      <!-- SCHOOL EMBLEM -->
+      <div class="about-block">
+        <h2>The School Emblem</h2>
+        <p>Our school emblem is the outward expression of our aspirations and objectives, and together with the school colours, serves to distinguish and clarify all elements of the school into a meaningful coherent whole.</p>
+        <p>The school emblem was adapted in 1955 to mark the school's elevation to High School status. It is a maroon shield containing a design comprising:</p>
+        <ul>
+          <li>Five gold triangles supporting an orb and enclosing a grey space.</li>
+          <li>A grey ribbon base carries the motto: "Discipulus Tuus Sum".</li>
+          <li>The golden orb symbolizes the object of learning — the Universe (inner and outer). In his pursuit the learner is moved by the "sense of beyond" depicted by the curvature of the orb.</li>
+          <li>The five outward pointing equilateral triangles are the senses through which he becomes aware of the Universe outside and tries to understand it. This requires an intellectually and an emotionally balanced mind.</li>
+          <li>Knowing and not knowing combine in knowledge just as light and darkness combine in greyness. However, the grey is bounded to betoken "all-knowing is impossible".</li>
+          <li>The motto highlights the essence of learning in a learning environment. Only when pupil and master are learners, can learning result.</li>
+        </ul>
+
+        <div class="emblem-timeline">
+          <div class="emblem-card">
+            <div class="year">1955</div>
+            <h4>Original Emblem</h4>
+            <p>The maroon shield with five gold triangles, golden orb, and the motto "Discipulus Tuus Sum" was adopted when the school was elevated to High School status.</p>
+          </div>
+          <div class="emblem-card">
+            <div class="year">1964</div>
+            <h4>The Laurel Added</h4>
+            <p>The laurel was added as an achievement of its Golden Jubilee in 1964 to symbolize 50 years of education. It also symbolizes the success attained by the school over the years.</p>
+          </div>
+          <div class="emblem-card">
+            <div class="year">2014</div>
+            <h4>The Crown Added</h4>
+            <p>With the school celebrating its centenary in 2014, a crown was placed on top of the emblem to symbolize 100 years of excellence in education.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESSAGES FROM PAST PRINCIPALS -->
+      <div class="about-block">
+        <h2>Messages from Past Principals</h2>
+
+        <div class="principal-card">
+          <div class="p-photo">👨‍💼</div>
+          <div>
+            <div class="p-name">Mr R.G. Reddy</div>
+            <div class="p-title">Past Principal (1994 – 2006)</div>
+            <p>One of the most pleasant features of my life as a teacher, Head of Department and Principal at Windsor was the special chemistry between myself and the institution. Every time I left Windsor, for some reason or the other, there was a compelling reason to return. To occupy the Principal post was a humbling experience, and with the advent of democracy in 1994, it provided an opportunity to take the school in a different direction. Transformation became the norm, and it became the most exciting period in the history of Windsor.</p>
+            <p>The floods of 1994 provided the catalyst for major change — the demolition of the outdated toilets and prefab buildings, and the construction of the new R3.5 million science block. The Department of Education was given a choice — relocate the school to Klip River High School or build a new block. The construction of Qeduzisi Dam was a huge benefit to the school, and allowed management to focus on converting the prefab buildings into the Princess Hall and the bottom of the new hall into the fashionable Buckingham Hall. In addition, with the assistance of head of department, Mr Ismail Moosa, a new Industrial Arts Centre was constructed with limited funds and donations.</p>
+            <p>By the year 2000, the school had progressed into one of the lighthouse schools of the district, and both the results and the capital works project became a major talking point in Ladysmith. The school opened its doors to disadvantaged schools and the community outreach programmes reached into the rural areas. In the following year, the property next door to the school was purchased, and the first seeds of a school hall was planted.</p>
+            <p>The magnanimity of the community was boundless, and the Uthukela District Municipality provided a grant of R100 000 for outstanding leadership in education. To the surprise of the staff, a steel structure with chromodek roofing was put up and within six months the new hall became a reality. Fittingly called the Windsor Hall, it has a seating capacity of 1 200, making it the largest school hall in the region. This was followed up by building relationships with tertiary institutions including the University of KwaZulu-Natal and the University of the Free State to bring distance education to Ladysmith. Not only was Windsor the centre for post matric study, it created another source of revenue for the school.</p>
+            <p>I would have loved to end my teaching career at Windsor but I had to leave in 2006 to take the post of Deputy Mayor of the town. A special tribute to mentors Mr AC Naidoo, Mr CM Nair, Mr M Patel and the wonderful Percy Reddy for inspiring my rapid climb up the education ladder, and the many teachers who provided loyal and dedicated service during my tenure, and particularly, Dharam Domun and Gopie Reddy, for the friendship and comradeship. I was the sum total of the contribution of many people, and I will always remain indebted to them.</p>
+            <p>Windsor will always remain special to me, and I wish this venerable institution everything of the best in future years.</p>
+            <div class="p-sign">Discipulus Tuus Sum — I will always remain your devoted and loyal pupil.</div>
+          </div>
+        </div>
+
+        <div class="principal-card">
+          <div class="p-photo">👨‍💼</div>
+          <div>
+            <div class="p-name">Mr P.B. Huri</div>
+            <div class="p-title">Past Principal &nbsp;|&nbsp; BSc(Hons), BEd, LLB</div>
+            <p>It is indeed a privilege and honour for me to submit this message on the occasion of the Centenary of this venerable institution. I consider myself truly blessed to have experienced life at Windsor as student, as a teacher and finally as the head of this revered institution.</p>
+            <p>My association with Windsor Secondary School has been a remarkable and memorable journey for me. The twelve years (1949–1961) I spent as a student were some of the most memorable.</p>
+            <p>School was such fun and we looked forward to each new day. The highlight on the school's sporting calendar was without doubt the Annual Athletics Meeting. When Mr N.G. Chetty (principal) introduced the Bugle Band and the Drum Majorettes, the Annual Athletics, with all the glitz and glamour of the occasion, became a major attraction and a talking point throughout the province.</p>
+            <p>My first appointment as a teacher at Windsor was a momentous day in January 1967 when I waded through knee-deep flood waters to report for duty.</p>
+            <p>My seven years (1967–1973) as a teacher were just as rewarding and life changing as my years as a pupil. I joined the staff of Windsor amidst many of my former teachers.</p>
+            <p>In January 1990 I returned as a Principal only to be welcomed by the late Mr. A.C. Naidoo (then Principal), in his farewell address wished me well in my new post, and expressed the hope that I may return in the future as principal of Windsor. Not in my wildest dreams, did I realize that this would turn out to be so prophetic. He shook my hand and with the words "Welcome sir", escorted me to the office. This speaks volumes about the humility of the man that I was so blessed to rub shoulders with.</p>
+            <p>During my all too brief sojourn as principal I had the honour and privilege of hosting Prof B. Pachai, my history teacher, renowned author and historian and one of the most distinguished sons of Windsor as a guest. At the time of his visit he was the Director of the Human Rights Commission of Canada. In his address he encouraged the students to aspire to be part of the changes that South Africa was witnessing.</p>
+            <p>In 1990 I had the unique honour of sharing in the glory of the first student to obtain a full house of six distinctions in the Matric examinations. Nilesh Nair was placed third in the Top Ten in the country, a first for the school in its long history.</p>
+            <p>Any tribute would be incomplete without mention being made of Mr. Makhaya, the humble and dedicated school caretaker. Makhaya was a caretaker at Windsor when I was a pupil in the primary classes and he was still at the school when I returned as principal. We salute Mr. Makhaya, you were a sterling example.</p>
+            <p>Windsor played a huge role in the matters of the heart for me. I met my lifelong partner at Windsor and we continue to share more than fifty years of friendship and love and respect for each other. In conclusion, let us all celebrate this milestone with love and gratitude. Let us cherish the friendship forged, the legacy and savour the memories of a glorious hundred years. May the glorious past be replicated for another hundred years. Viva Windsor Viva.</p>
+            <div class="p-sign">P.B. Huri &nbsp;|&nbsp; BSc(Hons), BEd, LLB</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Windsor Secondary School</h4>
+        <p>Committed to academic excellence, character development, and producing well-rounded citizens.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61581281594797" target="_blank" rel="noopener" class="social-link"><span class="s-icon">📘</span> Facebook</a>
+          <a href="https://www.tiktok.com/@windsorsecondaryschool" target="_blank" rel="noopener" class="social-link"><span class="s-icon">🎵</span> TikTok</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="calendar.html">Calendar</a></li><li><a href="admissions.html">Admissions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>📍 28 Forbes Street, Ladysmith, 3370</li>
+          <li>📞 036 637 2011</li>
+          <li>📠 036 637 3632</li>
+          <li>✉️ windsorsecondary1@gmail.com</li>
+          <li>✉️ windsorsecondary2@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Windsor Secondary School &bull; <em>Discipulus Tuus Sum</em></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

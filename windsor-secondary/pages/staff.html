@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Staff - Windsor Secondary School</title>
+  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <style>
+    .staff-table-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow-x: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+    }
+    .staff-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      font-size: 0.88rem;
+    }
+    .staff-table thead tr {
+      background: var(--maroon);
+      color: var(--gold);
+    }
+    .staff-table th {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .staff-table td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid #eee;
+      color: var(--dark);
+      white-space: nowrap;
+    }
+    .staff-table tbody tr:nth-child(even) { background: #faf7f2; }
+    .staff-table tbody tr:hover { background: #f5ede0; }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .badge-principal   { background: #3d0008; color: var(--gold); }
+    .badge-deputy      { background: #6b0020; color: var(--gold-light); }
+    .badge-hod         { background: #c9a84c; color: #1a0004; }
+    .badge-educator    { background: #f0e6c8; color: var(--maroon); }
+    .badge-staff       { background: #d4e8d4; color: #1a5c1a; }
+
+    .gender-m { color: #1a4a8a; font-weight: 600; }
+    .gender-f { color: #8a1a4a; font-weight: 600; }
+
+    .search-bar {
+      max-width: 420px;
+      margin: 0 auto 1.5rem;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    .search-bar input:focus { outline: none; border-color: var(--maroon); }
+
+    .emis-header {
+      background: var(--maroon);
+      color: var(--white);
+      padding: 1rem 2rem;
+      font-size: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .emis-header strong { color: var(--gold); }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-brand">
+      <span>Windsor Secondary School</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="staff.html" class="active">Staff</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="calendar.html">Calendar</a></li><li><a href="uniform.html">Uniform</a></li><li><a href="admissions.html">Admissions</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page-banner">
+    <img src="../images/logo.png" alt="" class="page-banner-watermark" aria-hidden="true" />
+    <h1>Our Staff</h1>
+    <p>KwaZulu-Natal Department of Education — Windsor Secondary School</p>
+  </div>
+
+  <div class="emis-header">
+    <span><strong>District:</strong> Uthukela</span>
+    <span><strong>EMIS No:</strong> 500296444</span>
+    <span><strong>HR List:</strong> 2026/04/13</span>
+    <span><strong>Total Staff:</strong> 48</span>
+    <span><strong>Educators:</strong> 37</span>
+    <span><strong>Support Staff:</strong> 11</span>
+  </div>
+
+  <!-- LEADERSHIP SPOTLIGHT -->
+  <section style="background: var(--white);">
+    <div class="section-title">
+      <h2>School Leadership</h2>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; max-width:1100px; margin:0 auto 1rem;">
+
+      <div style="background:var(--maroon); color:var(--white); border-radius:10px; text-align:center; padding:2rem 1.5rem; width:200px; box-shadow:0 4px 20px rgba(0,0,0,0.2);">
+        <div style="width:80px; height:80px; border-radius:50%; background:var(--gold); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:2rem; color:var(--maroon);">👨‍💼</div>
+        <div style="font-size:0.72rem; font-weight:700; letter-spacing:1px; color:var(--gold); margin-bottom:0.4rem;">PRINCIPAL</div>
+        <h3 style="font-size:0.95rem; color:var(--white);">Mr K.R. Mbatha</h3>
+      </div>
+
+      <div style="background:#1a0004; color:var(--white); border-radius:10px; text-align:center; padding:2rem 1.5rem; width:200px; box-shadow:0 4px 20px rgba(0,0,0,0.2);">
+        <div style="width:80px; height:80px; border-radius:50%; background:var(--gold); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:2rem; color:var(--maroon);">👩‍💼</div>
+        <div style="font-size:0.72rem; font-weight:700; letter-spacing:1px; color:var(--gold); margin-bottom:0.4rem;">DEPUTY PRINCIPAL</div>
+        <h3 style="font-size:0.95rem; color:var(--white);">Ms E.G. Zwane</h3>
+      </div>
+
+      <div style="background:#2a0006; color:var(--white); border-radius:10px; text-align:center; padding:2rem 1.5rem; width:200px; box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+        <div style="width:80px; height:80px; border-radius:50%; background:#c9a84c33; border:2px solid var(--gold); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:2rem;">👨‍🏫</div>
+        <div style="font-size:0.72rem; font-weight:700; letter-spacing:1px; color:var(--gold); margin-bottom:0.4rem;">HEAD OF DEPARTMENT</div>
+        <h3 style="font-size:0.95rem; color:var(--white);">Mr F.S. Mahomed</h3>
+      </div>
+
+      <div style="background:#2a0006; color:var(--white); border-radius:10px; text-align:center; padding:2rem 1.5rem; width:200px; box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+        <div style="width:80px; height:80px; border-radius:50%; background:#c9a84c33; border:2px solid var(--gold); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:2rem;">👩‍🏫</div>
+        <div style="font-size:0.72rem; font-weight:700; letter-spacing:1px; color:var(--gold); margin-bottom:0.4rem;">HEAD OF DEPARTMENT</div>
+        <h3 style="font-size:0.95rem; color:var(--white);">Ms N.G. Masimula</h3>
+      </div>
+
+      <div style="background:#2a0006; color:var(--white); border-radius:10px; text-align:center; padding:2rem 1.5rem; width:200px; box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+        <div style="width:80px; height:80px; border-radius:50%; background:#c9a84c33; border:2px solid var(--gold); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:2rem;">👨‍🏫</div>
+        <div style="font-size:0.72rem; font-weight:700; letter-spacing:1px; color:var(--gold); margin-bottom:0.4rem;">HEAD OF DEPARTMENT</div>
+        <h3 style="font-size:0.95rem; color:var(--white);">Mr N.P. Mkhasibe</h3>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATORS -->
+  <section>
+    <div class="section-title">
+      <h2>Educators &amp; Management</h2>
+    </div>
+
+    <div class="legend">
+      <span class="badge badge-principal">Principal</span>
+      <span class="badge badge-deputy">Deputy Principal</span>
+      <span class="badge badge-hod">HOD</span>
+      <span class="badge badge-educator">Educator</span>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="staff-search" placeholder="Search by name, role, or language..." aria-label="Search staff" />
+    </div>
+
+    <div class="staff-table-wrap">
+      <table class="staff-table" id="staff-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Surname, Initials</th>
+            <th>Gender</th>
+            <th>Race</th>
+            <th>Home Language</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Akoo, FA</td><td class="gender-m">M</td><td>Asian/Indian</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>2</td><td>Ankiah, D</td><td class="gender-f">F</td><td>Asian/Indian</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>3</td><td>Bedasie, LB</td><td class="gender-f">F</td><td>Asian/Indian</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>4</td><td>Buthelezi, NT</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>5</td><td>Cebekhulu, TF</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>6</td><td>Domun, M</td><td class="gender-f">F</td><td>Asian/Indian</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>7</td><td>Hadebe, N</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>8</td><td>Hadebe, NF</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>9</td><td>Hlatshwayo, NH</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>10</td><td>Hlatshwayo, XN</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>11</td><td>Khanyeza, NP</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>12</td><td>Khanyile, MMT</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>13</td><td>Khumalo, LE</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>14</td><td>Lushaba, SP</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>15</td><td>Maduna, MT</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>16</td><td>Magubane, LE</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>17</td><td>Mahomed, AB</td><td class="gender-f">F</td><td>Asian/Indian</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>18</td><td>Mahomed, FS</td><td class="gender-m">M</td><td>Asian/Indian</td><td>English</td><td><span class="badge badge-hod">HOD</span></td></tr>
+          <tr><td>19</td><td>Makhanya, FM</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>20</td><td>Maphale, MS</td><td class="gender-f">F</td><td>African/Black</td><td>SeSotho</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>21</td><td>Masimula, NG</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-hod">HOD</span></td></tr>
+          <tr><td>22</td><td>Mbatha, KR</td><td class="gender-m">M</td><td>African/Black</td><td>English</td><td><span class="badge badge-principal">Principal</span></td></tr>
+          <tr><td>23</td><td>Mkhasibe, NP</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-hod">HOD</span></td></tr>
+          <tr><td>24</td><td>Mntambo, ZN</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>25</td><td>Mtshali, MN</td><td class="gender-m">M</td><td>African/Black</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>26</td><td>Mvemve, MJ</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>27</td><td>Nanan, K</td><td class="gender-f">F</td><td>Asian/Indian</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>28</td><td>Ngwenya, TM</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>29</td><td>Nkomo, P</td><td class="gender-f">F</td><td>African/Black</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>30</td><td>Ntshingila, SK</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>31</td><td>Nyembe, FT</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>32</td><td>Potelwa, LD</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>33</td><td>Singh, S</td><td class="gender-f">F</td><td>Asian/Indian</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>34</td><td>Suklal, N</td><td class="gender-m">M</td><td>Coloured</td><td>English</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>35</td><td>Zikode, MM</td><td class="gender-m">M</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>36</td><td>Zulu, GV</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-educator">Educator</span></td></tr>
+          <tr><td>37</td><td>Zwane, EG</td><td class="gender-f">F</td><td>African/Black</td><td>IsiZulu</td><td><span class="badge badge-deputy">Deputy Principal</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SUPPORT STAFF -->
+  <section style="background: var(--white);">
+    <div class="section-title">
+      <h2>Support Staff</h2>
+    </div>
+    <div class="staff-table-wrap">
+      <table class="staff-table" id="support-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Surname</th>
+            <th>First Name</th>
+            <th>Gender</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>38</td><td>Dlamini</td><td>Sinqobelo Precious</td><td class="gender-f">F</td><td><span class="badge badge-staff">Admin Staff</span></td></tr>
+          <tr><td>39</td><td>Gabela</td><td>Thobile</td><td class="gender-f">F</td><td><span class="badge badge-staff">Cleaner</span></td></tr>
+          <tr><td>40</td><td>Kubheka</td><td>Sazi</td><td class="gender-m">M</td><td><span class="badge badge-staff">Caretaker</span></td></tr>
+          <tr><td>41</td><td>Kumalo</td><td>Obert Siphiwe</td><td class="gender-m">M</td><td><span class="badge badge-staff">Security</span></td></tr>
+          <tr><td>42</td><td>Lushaba</td><td>Thapelo</td><td class="gender-m">M</td><td><span class="badge badge-staff">Financial Officer</span></td></tr>
+          <tr><td>43</td><td>Mabaso</td><td>Zanele Promise</td><td class="gender-f">F</td><td><span class="badge badge-staff">Admin Staff</span></td></tr>
+          <tr><td>44</td><td>Madinane</td><td>Mxolisi R</td><td class="gender-m">M</td><td><span class="badge badge-staff">Support Staff</span></td></tr>
+          <tr><td>45</td><td>Mazibuko</td><td>Catherine Nconyiwe</td><td class="gender-f">F</td><td><span class="badge badge-staff">Support Staff</span></td></tr>
+          <tr><td>46</td><td>Mthalani</td><td>Japhta Mzwakhe</td><td class="gender-m">M</td><td><span class="badge badge-staff">Support Staff</span></td></tr>
+          <tr><td>47</td><td>Ncala</td><td>Ephraim M</td><td class="gender-m">M</td><td><span class="badge badge-staff">Support Staff</span></td></tr>
+          <tr><td>48</td><td>Ndaba</td><td>John X</td><td class="gender-m">M</td><td><span class="badge badge-staff">Support Staff</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p>Windsor Secondary School — Discipulus Tuus Sum</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="calendar.html">Calendar</a></li><li><a href="admissions.html">Admissions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>📍 Windsor, KwaZulu-Natal</li>
+          <li>📞 [Phone Number]</li>
+          <li>✉️ [Email Address]</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Windsor Secondary School. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    document.getElementById('staff-search').addEventListener('input', function () {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('#staff-table tbody tr, #support-table tbody tr').forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
+

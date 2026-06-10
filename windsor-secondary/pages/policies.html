@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Policies - Windsor Secondary School</title>
+  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <style>
+    .policies-wrap { max-width: 960px; margin: 0 auto; }
+
+    /* Tab navigation */
+    .tab-nav {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2rem; border-bottom: 2px solid var(--Cd);
+      padding-bottom: 0;
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Outfit', sans-serif; font-size: 0.82rem;
+      font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--T); padding: 0.75rem 1.25rem;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn:hover { color: var(--M); }
+    .tab-btn.active { color: var(--M); border-bottom-color: var(--M); }
+
+    /* Tab panels */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Section headings */
+    .pol-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 700; color: var(--M);
+      margin-bottom: 1rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--G); display: inline-block;
+    }
+    .pol-h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; color: var(--M); font-weight: 700;
+      margin: 1.75rem 0 0.6rem;
+    }
+    .pol-p {
+      color: var(--T); line-height: 1.85; font-size: 0.93rem;
+      margin-bottom: 0.9rem;
+    }
+
+    /* Info box */
+    .info-box {
+      background: var(--Cd); border-left: 4px solid var(--M);
+      padding: 1.1rem 1.4rem; margin: 1.25rem 0;
+      font-size: 0.9rem; color: var(--T); line-height: 1.8;
+    }
+    .info-box strong { color: var(--M); }
+
+    /* Rule cards */
+    .rule-card {
+      background: var(--W); border: 1px solid var(--Cd);
+      border-left: 4px solid var(--G); padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(92,10,26,0.05);
+    }
+    .rule-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--M);
+      margin-bottom: 0.6rem;
+    }
+    .rule-card ul {
+      list-style: none; padding: 0; margin: 0;
+    }
+    .rule-card ul li {
+      font-size: 0.88rem; color: var(--T); line-height: 1.7;
+      padding: 0.3rem 0; border-bottom: 1px solid var(--Cd);
+      display: flex; gap: 0.6rem; align-items: flex-start;
+    }
+    .rule-card ul li:last-child { border-bottom: none; }
+    .rule-card ul li::before {
+      content: '◆'; color: var(--G); font-size: 0.45rem;
+      margin-top: 0.55rem; flex-shrink: 0;
+    }
+
+    /* Discipline levels */
+    .level-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 1.5rem; margin-top: 1.5rem;
+    }
+    .level-card {
+      background: var(--W); border: 1px solid var(--Cd);
+      border-top: 4px solid var(--M); padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(92,10,26,0.07);
+    }
+    .level-card.gold { border-top-color: var(--G); }
+    .level-badge {
+      display: inline-block; background: var(--M); color: var(--G);
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 0.3rem 0.9rem;
+      border-radius: 2px; margin-bottom: 0.75rem;
+    }
+    .level-card.gold .level-badge { background: var(--G); color: var(--M); }
+    .level-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700; color: var(--M);
+      margin-bottom: 0.75rem;
+    }
+    .level-card p {
+      font-size: 0.85rem; color: var(--T); line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .level-card p strong { color: var(--M); font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 0.5px; }
+    .level-card ul {
+      list-style: none; padding: 0; margin: 0.4rem 0 0;
+    }
+    .level-card ul li {
+      font-size: 0.83rem; color: var(--T); line-height: 1.65;
+      padding: 0.25rem 0; border-bottom: 1px solid var(--Cd);
+      display: flex; gap: 0.5rem; align-items: flex-start;
+    }
+    .level-card ul li:last-child { border-bottom: none; }
+    .level-card ul li::before {
+      content: '–'; color: var(--Gd); flex-shrink: 0;
+    }
+
+    /* Cell phone / uniform sections */
+    .highlight-box {
+      background: var(--M); color: var(--C);
+      padding: 1.5rem 2rem; margin: 1.5rem 0;
+      border-radius: 4px;
+    }
+    .highlight-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--G); margin-bottom: 0.75rem;
+    }
+    .highlight-box p, .highlight-box li {
+      font-size: 0.9rem; line-height: 1.8; color: var(--C);
+    }
+    .highlight-box ul { list-style: none; padding: 0; }
+    .highlight-box ul li { padding: 0.25rem 0; display: flex; gap: 0.6rem; }
+    .highlight-box ul li::before { content: '◆'; color: var(--G); font-size: 0.45rem; margin-top: 0.55rem; flex-shrink: 0; }
+    .sanction-box {
+      background: var(--Cd); border: 2px solid var(--M);
+      padding: 1rem 1.5rem; margin-top: 1rem;
+      font-size: 0.9rem; color: var(--M); font-weight: 700;
+      text-align: center; letter-spacing: 0.5px;
+    }
+
+    /* Uniform misconduct list */
+    .misconduct-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.5rem; margin-top: 1rem;
+    }
+    .misconduct-item {
+      background: var(--W); border: 1px solid var(--Cd);
+      border-left: 3px solid var(--M); padding: 0.6rem 1rem;
+      font-size: 0.85rem; color: var(--T);
+    }
+    .nb-box {
+      background: var(--M); color: var(--G);
+      padding: 1rem 1.5rem; margin-top: 1.5rem;
+      font-size: 0.9rem; font-weight: 700; text-align: center;
+      letter-spacing: 0.5px; line-height: 1.7;
+    }
+
+    @media (max-width: 640px) {
+      .level-grid { grid-template-columns: 1fr; }
+      .tab-btn { font-size: 0.72rem; padding: 0.6rem 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-brand"><span>Windsor Secondary School</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="uniform.html">Uniform</a></li>
+      <li><a href="admissions.html">Admissions</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page-banner">
+    <img src="../images/logo.png" alt="" class="page-banner-watermark" aria-hidden="true" />
+    <h1>School <em>Policies</em></h1>
+    <p>Code of Conduct, Disciplinary Procedures &amp; School Rules</p>
+  </div>
+
+  <section style="background: var(--C);">
+    <div class="policies-wrap">
+
+      <!-- TAB NAVIGATION -->
+      <div class="tab-nav" role="tablist">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-conduct" id="btn-conduct">Code of Conduct</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-discipline" id="btn-discipline">Disciplinary Procedures</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-cellphone" id="btn-cellphone">Cell Phone Policy</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-uniform" id="btn-uniform">Uniform Misconduct</button>
+      </div>
+
+      <!-- ===== TAB 1: CODE OF CONDUCT ===== -->
+      <div class="tab-panel active" id="tab-conduct" role="tabpanel" aria-labelledby="btn-conduct">
+        <h2 class="pol-h2">Code of Conduct for Learners</h2>
+
+        <h3 class="pol-h3">Preamble</h3>
+        <p class="pol-p">In terms of the South African Schools Act (SASA — Act 84 of 1996), the School Governing Body (SGB) must develop a Code of Conduct for learners. This Code of Conduct has been developed in accordance with the Act and applies to all learners enrolled at Windsor Secondary School.</p>
+
+        <h3 class="pol-h3">Purpose</h3>
+        <p class="pol-p">To protect and promote the integrity and security of each learner and all members of the school community.</p>
+
+        <h3 class="pol-h3">Objectives</h3>
+        <div class="info-box">
+          <strong>(a)</strong> Ensure that no learner is unlawfully treated.<br />
+          <strong>(b)</strong> Foster mutual respect and tolerance among all members of the school community.<br />
+          <strong>(c)</strong> Ensure that administrative procedures are clearly defined and consistently applied.
+        </div>
+
+        <h3 class="pol-h3">School Rules</h3>
+
+        <div class="rule-card">
+          <h4>👔 School Wear &amp; Appearance</h4>
+          <ul>
+            <li>Learners must wear a neat, complete school uniform every day.</li>
+            <li>Girls' hair must be neat and tied back at all times.</li>
+            <li>Boys' hair must be kept short.</li>
+            <li>No hair highlights or colouring of any kind.</li>
+            <li>A wristwatch is the only jewellery permitted.</li>
+            <li>No earrings, necklaces, or bangles.</li>
+            <li>Nails must be kept short — no nail polish.</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <h4>📅 School Attendance</h4>
+          <ul>
+            <li>Learners must attend school regularly and punctually.</li>
+            <li>If a learner is absent, a parent or guardian must notify the school in writing.</li>
+            <li>Truancy will not be tolerated under any circumstances.</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <h4>📚 Classroom Rules</h4>
+          <ul>
+            <li>Learners must follow all instructions given by educators.</li>
+            <li>All homework and assignments must be completed on time.</li>
+            <li>No learner may leave the classroom without the educator's permission.</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <h4>🏫 Care of School Property</h4>
+          <ul>
+            <li>Learners must protect and care for all school equipment and facilities.</li>
+            <li>Vandalism of any kind is strictly prohibited.</li>
+            <li>Learners will be required to pay for any damage caused.</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <h4>🚫 Drug, Alcohol &amp; Weapon Free Zone</h4>
+          <ul>
+            <li>Windsor Secondary School is a drug, alcohol, and weapon free zone.</li>
+            <li>No smoking, consumption of alcohol, or use of drugs is permitted on school premises.</li>
+            <li>The following items are strictly prohibited: cigarettes, lighters, matches, drugs, alcohol, pornographic material, firearms, and knives.</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <h4>✋ Violence, Bullying &amp; Foul Language</h4>
+          <ul>
+            <li>No violence, bullying, intimidation, or threatening behaviour of any kind.</li>
+            <li>Swearing and the use of foul language is strictly prohibited.</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <h4>📱 Property of Learners</h4>
+          <ul>
+            <li>Cell phones, games, and radios may not be brought to school without explicit permission.</li>
+            <li>Learners are advised not to bring valuable items to school.</li>
+            <li>Theft of any kind will not be tolerated.</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <h4>🚪 Early Departure</h4>
+          <ul>
+            <li>No learner may leave the school premises without permission from the school office.</li>
+            <li>Sick learners must first report to their class teacher before going to the office.</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <h4>🌟 General Behaviour</h4>
+          <ul>
+            <li>No selling of goods or services on school premises.</li>
+            <li>Dishonesty in any form is not permitted.</li>
+            <li>Learners must respect national symbols at all times.</li>
+            <li>No littering — learners must keep the school clean.</li>
+            <li>No disruption of the school environment or learning process.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ===== TAB 2: DISCIPLINARY PROCEDURES ===== -->
+      <div class="tab-panel" id="tab-discipline" role="tabpanel" aria-labelledby="btn-discipline">
+        <h2 class="pol-h2">Disciplinary Procedures</h2>
+        <p class="pol-p">Windsor Secondary School follows a structured four-level disciplinary framework. Misconduct is categorised by severity, and appropriate action is taken at each level.</p>
+
+        <div class="level-grid">
+
+          <div class="level-card">
+            <div class="level-badge">Level 1</div>
+            <h4>Minor Misconduct — Action by Educator</h4>
+            <p><strong>Examples include:</strong></p>
+            <ul>
+              <li>Late coming</li>
+              <li>Bunking class</li>
+              <li>Incomplete homework</li>
+              <li>Failing to respond to instructions</li>
+              <li>Dishonesty with minor consequences</li>
+              <li>Littering</li>
+              <li>Shouting / minor vulgarity</li>
+              <li>Not following instructions</li>
+              <li>Loitering in toilets</li>
+              <li>Leaving class without permission</li>
+              <li>Late for school</li>
+              <li>Minor uniform infringements</li>
+              <li>Hair infringements</li>
+              <li>Carrying cell phones</li>
+            </ul>
+            <p style="margin-top:1rem;">There is no single blueprint for every incident. However, one or more of the following actions may be administered:</p>
+            <p style="margin:0.75rem 0 0;"><strong>Action by Educator:</strong></p>
+            <ul>
+              <li><strong>Reprimand:</strong> A stern reprimand often takes care of the problem.</li>
+              <li><strong>Menial task:</strong> Such as picking up litter immediately or removing graffiti / cleaning the classroom or windows.</li>
+              <li><strong>Warning:</strong> More serious offences and all warnings must be recorded in the Learner Discipline Book.</li>
+              <li><strong>Further referral:</strong> If inappropriate behaviour continues after two warnings, the learner is referred to the HOD as a Level 2 misconduct.</li>
+            </ul>
+          </div>
+
+          <div class="level-card gold">
+            <div class="level-badge">Level 2</div>
+            <h4>More Serious Misconduct — Action by HOD/DH</h4>
+            <p><strong>Examples include:</strong></p>
+            <ul>
+              <li>Frequently repeating Level 1 misconduct</li>
+              <li>Smoking / tobacco / weed</li>
+              <li>Leaving school without permission</li>
+              <li>Abusive language</li>
+              <li>Interrupting the education process</li>
+              <li>Disrespect towards staff or learners</li>
+              <li>Minor vandalism / graffiti</li>
+              <li>Dishonesty with serious consequences</li>
+              <li>Swearing</li>
+              <li>Selling items at school</li>
+              <li>Minor damage to property</li>
+              <li>Cheating in tests</li>
+              <li>Copying work / dishonesty</li>
+            </ul>
+            <p style="margin-top:1rem;">All cases must be recorded in the Discipline Book.</p>
+            <p style="margin-top:0.75rem;"><strong>Action to be taken by DH:</strong></p>
+            <ul>
+              <li><strong>Interview learner:</strong> The learner is interviewed and documented to establish the reason underpinning the misbehaviour.</li>
+              <li><strong>Official reprimand:</strong> A stern reprimand from the person in authority often corrects inappropriate behaviour. Details of all official reprimands must be recorded in the Discipline Book.</li>
+              <li><strong>Menial tasks:</strong> Such as cleaning the walls to remove marks or unauthorized writing or graffiti.</li>
+              <li><strong>Confiscation:</strong> Items being sold should be confiscated and immediately lodged with the office for security reasons. Such items must be returned only to the parent, who should be called to school the following day.</li>
+              <li><strong>Composition:</strong> Besides any other action, all losses must be compensated for and repairs to damages must be paid for by the parent/guardian.</li>
+              <li><strong>Inform parent/guardian:</strong> Issue a D.C. Form to the learner and contact the parent. Allow two days for the parent/guardian to respond by acknowledging receipt of the message.</li>
+              <li><strong>Further referral:</strong> If inappropriate behaviour continues after the above procedures have been implemented, the matter must be referred to the Principal.</li>
+            </ul>
+          </div>
+
+          <div class="level-card">
+            <div class="level-badge">Level 3</div>
+            <h4>Serious Misconduct — Action by Deputy Principal</h4>
+            <p><strong>Examples include:</strong></p>
+            <ul>
+              <li>Frequently repeating Level 2 misconduct where action taken by school authorities is considered ineffective</li>
+              <li>Substance abuse</li>
+              <li>Inflicting minor injury on another person</li>
+              <li>Gambling</li>
+              <li>Being severely disruptive in class</li>
+              <li>Forging documents or signatures with minor consequences</li>
+              <li>Racist, sexist or other discriminatory behaviour</li>
+              <li>Possessing or distributing pornographic, racist or sexist materials</li>
+              <li>Theft</li>
+              <li>Fighting / bullying / intimidation</li>
+              <li>Vandalism</li>
+              <li>Cheating during tests / examinations</li>
+              <li>Sexual offence</li>
+              <li>Carrying matches, cigarettes, or weed (dagga)</li>
+            </ul>
+            <p style="margin-top:1rem;">A detailed report must be kept by the Deputy Principal. Such records will play a pivotal role in any eventual suspension or explanation.</p>
+            <p style="margin-top:0.75rem;"><strong>Action to be taken by Deputy Principal:</strong></p>
+            <ul>
+              <li><strong>Interview offender/witness/educator:</strong> Since Level 3 misconduct is serious, it is essential to get all the facts before taking action. This provides a global picture of the offender and may include a statement by the offender.</li>
+              <li><strong>Counselling:</strong> Depending on the nature of the offence and the character of the learner, counselling at school may be necessary to solve the problem.</li>
+              <li><strong>Confiscation:</strong> The incriminating material must be immediately confiscated and held in safe custody. Such material may be used as evidence in a tribunal.</li>
+              <li><strong>Call parent/guardian:</strong> The parent/guardian must be called in as a matter of urgency.</li>
+              <li><strong>Compensation:</strong> Besides taking any other form of action, all losses must be compensated for and repairs to damages must be paid for by the parent/guardian.</li>
+              <li><strong>Further referral:</strong> If the desired outcome is not achieved even after the above procedures have been implemented, the matter must be referred to the Principal. It may be necessary to refer certain cases to a social worker only in consultation with the Principal.</li>
+            </ul>
+          </div>
+
+          <div class="level-card gold">
+            <div class="level-badge">Level 4</div>
+            <h4>Very Serious Misconduct — Action by Principal / SAPS</h4>
+            <p><strong>Examples include:</strong></p>
+            <ul>
+              <li>Repetition of Level 3 misconduct</li>
+              <li>Substance abuse</li>
+              <li>Carrying dangerous objects to school</li>
+              <li>Threatening another person with dangerous objects</li>
+              <li>Causing intentional injury to another person</li>
+              <li>Engaging in sexual activities</li>
+              <li>Selling drugs</li>
+              <li>Possessing or using alcohol / narcotics</li>
+              <li>Disrupting the entire school</li>
+              <li>Forging documents or signatures with serious consequences</li>
+              <li>Sexual abuse and/or rape</li>
+              <li>Major theft</li>
+              <li>Breaking and entering locked premises</li>
+            </ul>
+            <p style="margin-top:1rem;"><strong>Action by Principal / SAPS / Social Workers / NGOs:</strong></p>
+            <ul>
+              <li>Confiscation of items</li>
+              <li>Call parent / guardian</li>
+              <li>Compensation for damage</li>
+              <li>Suspension (maximum 7 school days)</li>
+              <li>Disciplinary hearing</li>
+              <li>Expulsion</li>
+              <li>Involvement of SAPS</li>
+              <li>Referral to social workers</li>
+              <li>Referral to NGOs</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== TAB 3: CELL PHONE POLICY ===== -->
+      <div class="tab-panel" id="tab-cellphone" role="tabpanel" aria-labelledby="btn-cellphone">
+        <h2 class="pol-h2">Cell Phone Policy</h2>
+
+        <div class="highlight-box">
+          <h3>📵 Cell Phones Are NOT Allowed at School</h3>
+          <p>Windsor Secondary School has a strict no cell phone policy. Learners are not permitted to bring cell phones onto school premises.</p>
+        </div>
+
+        <h3 class="pol-h3">Reasons for This Policy</h3>
+        <div class="rule-card">
+          <ul>
+            <li>Cell phones cause fights and disputes among learners.</li>
+            <li>Cell phones are a target for theft and create security concerns.</li>
+            <li>Cell phones are a distraction from learning and academic work.</li>
+            <li>Cell phones encourage copying and dishonesty during examinations.</li>
+          </ul>
+        </div>
+
+        <h3 class="pol-h3">Communication Procedures</h3>
+        <div class="info-box">
+          <strong>If a learner needs to contact a parent or guardian:</strong> The learner must report to the school reception, where a call can be made.<br /><br />
+          <strong>If a parent or guardian needs to contact a learner:</strong> Parents must contact the school directly. The school will relay the message to the learner.
+        </div>
+
+        <div class="sanction-box">
+          ⚠️ SANCTION: Any cell phone found on a learner will be confiscated.<br />
+          A fine of <strong>R250.00</strong> is payable before the phone will be returned.
+        </div>
+      </div>
+
+      <!-- ===== TAB 4: UNIFORM MISCONDUCT ===== -->
+      <div class="tab-panel" id="tab-uniform" role="tabpanel" aria-labelledby="btn-uniform">
+        <h2 class="pol-h2">Acts Considered Misconduct — Uniform</h2>
+        <p class="pol-p">The following are considered acts of misconduct with regard to school uniform and appearance. Learners found in violation will be subject to disciplinary action.</p>
+
+        <div class="misconduct-grid">
+          <div class="misconduct-item">Shortened and narrowed school pants for both boys and girls</div>
+          <div class="misconduct-item">Suede Shoes</div>
+          <div class="misconduct-item">Hair colour/Dye/Polish</div>
+          <div class="misconduct-item">More than one set of earrings for girls</div>
+          <div class="misconduct-item">Nose ring</div>
+          <div class="misconduct-item">Rings, Bracelets, Neck chains worn</div>
+          <div class="misconduct-item">Long Nails</div>
+          <div class="misconduct-item">Nail with nail polish</div>
+          <div class="misconduct-item">Lip Gloss, Lipstick, Eye liner, Mascara and any other make-up worn</div>
+          <div class="misconduct-item">Colour contact lenses</div>
+          <div class="misconduct-item">Fancy beads and silver rings in hair</div>
+          <div class="misconduct-item">Fancy headbands and hair accessories</div>
+          <div class="misconduct-item">Bandanas worn</div>
+          <div class="misconduct-item">Secret socks</div>
+          <div class="misconduct-item">Caps and sun hats worn</div>
+          <div class="misconduct-item">Decorative shaved patterns on hair</div>
+          <div class="misconduct-item">Long sleeve vest worn under short sleeve shirt</div>
+          <div class="misconduct-item">Loop earrings</div>
+          <div class="misconduct-item" style="border-left-color: var(--M); font-weight: 700; color: var(--M);">HAIR PIECES AND EXTENSIONS</div>
+        </div>
+
+        <div class="nb-box">
+          NB: Learners MUST be attired according to the monthly prescribed uniform ONLY. No deviations will be allowed.<br />
+          Refer to the <a href="uniform.html" style="color: var(--G); text-decoration: underline;">Uniform Schedule</a> for the monthly dress code.
+          <br /><a href="uniform.html" class="btn btn-gold" style="margin-top:1rem; display:inline-block; text-decoration:none;">View Full Uniform Schedule</a>
+        </div>
+      </div>
+
+    </div><!-- /.policies-wrap -->
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Windsor Secondary School</h4>
+        <p>Committed to academic excellence, character development, and producing well-rounded citizens.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61581281594797" target="_blank" rel="noopener" class="social-link"><span class="s-icon">📘</span> Facebook</a>
+          <a href="https://www.instagram.com/?igsh=1d7deqlov3ocl&utm_content=b2wk9dw" target="_blank" rel="noopener" class="social-link"><span class="s-icon">📸</span> Instagram</a>
+          <a href="https://www.tiktok.com/@windsorsecondaryschool" target="_blank" rel="noopener" class="social-link"><span class="s-icon">🎵</span> TikTok</a>
+          <a href="https://wa.me/27825052456" target="_blank" rel="noopener" class="social-link"><span class="s-icon">💬</span> WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="policies.html">Policies</a></li>
+          <li><a href="fees.html">Fees &amp; Banking</a></li>
+          <li><a href="stationery.html">Stationery</a></li>
+          <li><a href="uniform.html">Uniform</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>📍 28 Forbes Street, Ladysmith, 3370</li>
+          <li>📞 +27 36 637 2011</li>
+          <li>💬 +27 82 505 2456</li>
+          <li>✉️ windsorsecondary1@gmail.com</li>
+          <li>✉️ windsorsecondary2@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Windsor Secondary School &bull; <em>Discipulus Tuus Sum</em></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Tab switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        tabPanels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        document.getElementById(btn.getAttribute('aria-controls')).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
