@@ -81,13 +81,12 @@ nav {
 /* ── PAGE BANNER (inner pages) ── */
 .page-banner {
   background: linear-gradient(135deg, #3d0610 0%, #5c0a1a 50%, #3d0610 100%);
-  padding: 5rem 2rem 5rem;
+  padding: 5rem 2rem 6rem;
   text-align: center;
   position: relative;
   overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%);
   margin-top: 64px;
-  width: 100%;
-  box-sizing: border-box;
 }
 .page-banner::before {
   content: '';
@@ -105,20 +104,18 @@ nav {
 }
 .page-banner h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
   color: var(--W);
   position: relative;
   z-index: 1;
-  line-height: 1.15;
-  word-break: break-word;
 }
 .page-banner h1 em { font-style: normal; color: var(--G); }
 .page-banner p {
   color: rgba(255,255,255,0.65);
   margin-top: 0.5rem;
-  font-size: clamp(0.72rem, 2vw, 0.85rem);
-  letter-spacing: 1.5px;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
   position: relative;
   z-index: 1;
