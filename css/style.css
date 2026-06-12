@@ -39,7 +39,7 @@ img, video { max-width: 100%; height: auto; display: block; }
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 64px;
+  height: 56px;
   z-index: 999;
   display: flex;
   align-items: center;
@@ -50,20 +50,30 @@ nav {
   box-shadow: 0 2px 16px rgba(0,0,0,0.3);
 }
 .nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-.nav-logo  { width: 38px; height: auto; }
+.nav-logo  { width: 36px; height: auto; }
 .nav-brand span {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--G);
   letter-spacing: 0.5px;
 }
+.nav-brand small {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.48rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.45);
+}
+.nav-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .nav-links { display: flex; list-style: none; }
 .nav-links a {
   color: rgba(255,255,255,0.7);
   text-decoration: none;
   padding: 0 0.85rem;
-  height: 64px;
+  height: 56px;
   display: flex;
   align-items: center;
   font-size: 0.72rem;
@@ -81,12 +91,31 @@ nav {
 /* ── PAGE BANNER (inner pages) ── */
 .page-banner {
   background: linear-gradient(135deg, #3d0610 0%, #5c0a1a 50%, #3d0610 100%);
-  padding: 5rem 2rem 6rem;
+  padding: 2.5rem 2rem 3.5rem;
   text-align: center;
   position: relative;
-  overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%);
-  margin-top: 64px;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%);
+  margin-top: 56px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* hide the inline watermark imgs — watermark is via ::before pseudo */
+.page-banner-watermark { display: none !important; }
+
+/* Gold line at the top of the banner */
+.page-banner::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--G) 25%, var(--Gl) 50%, var(--G) 75%, transparent);
+  pointer-events: none;
+  z-index: 2;
 }
 .page-banner::before {
   content: '';
@@ -104,18 +133,20 @@ nav {
 }
 .page-banner h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(1.8rem, 5vw, 3rem);
   font-weight: 700;
   color: var(--W);
   position: relative;
   z-index: 1;
+  line-height: 1.15;
+  word-break: break-word;
 }
 .page-banner h1 em { font-style: normal; color: var(--G); }
 .page-banner p {
   color: rgba(255,255,255,0.65);
   margin-top: 0.5rem;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
+  font-size: clamp(0.72rem, 2vw, 0.85rem);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   position: relative;
   z-index: 1;
@@ -353,14 +384,19 @@ footer h4 { font-family: 'Cormorant Garamond', serif; color: var(--G); margin-bo
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
   nav { padding: 0 1.25rem; }
-  .nav-links { display: none; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: rgba(61,6,16,0.98); padding: 1rem; overflow-y: auto; }
+  .nav-links { display: none; flex-direction: column; position: fixed; top: 56px; left: 0; right: 0; bottom: 0; background: rgba(61,6,16,0.98); padding: 1rem; overflow-y: auto; border-top: 1px solid rgba(201,168,76,0.15); }
   .nav-links.open { display: flex; }
-  .nav-links a { height: auto; padding: 0.85rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; }
+  .nav-links a { height: auto; padding: 0.85rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08) !important; font-size: 0.85rem; border-right: none; }
   .hamburger { display: flex; }
-  .page-banner { clip-path: none; padding: 4rem 1.5rem 3rem; }
+  .page-banner {
+    padding: 2rem 1.5rem 2rem;
+    clip-path: none;
+    min-height: 120px;
+  }
   .about-grid, .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .form-row { grid-template-columns: 1fr; }
+  .nav-logo { width: 30px; }
 }
 
 @media (max-width: 600px) {
