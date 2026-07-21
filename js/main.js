@@ -1,8 +1,8 @@
 // ===== Hamburger Menu =====
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+const hamburger = document.querySelector('.hamburger') || document.querySelector('.hbg') || document.getElementById('hbg');
+const navLinks = document.querySelector('.nav-links') || document.getElementById('nav-menu');
 
-if (hamburger) {
+if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
   });
