@@ -3,16 +3,27 @@ const hamburger = document.querySelector('.hamburger') || document.querySelector
 const navLinks = document.querySelector('.nav-links') || document.getElementById('nav-menu');
 
 if (hamburger && navLinks) {
-  hamburger.addEventListener('click', () => {
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
     navLinks.classList.toggle('open');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+      navLinks.classList.remove('open');
+    }
   });
 }
 
 // ===== Active Nav Link =====
 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.nav-links a').forEach(link => {
-  if (link.getAttribute('href') === currentPage || link.getAttribute('href') === '../' + currentPage) {
-    link.classList.add('active');
+document.querySelectorAll('.nav-links a, #nav-menu a').forEach(link => {
+  const href = link.getAttribute('href');
+  if (href) {
+    const linkPage = href.split('/').pop();
+    if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+      link.classList.add('active');
+    }
   }
 });
 
